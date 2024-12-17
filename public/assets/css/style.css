@@ -14,6 +14,59 @@
     color: #28a745 !important;
 }
 
+/* Product_category  */
+
+.section_category{
+    width:100%;
+    background-color: white;
+    padding: 1rem;
+}
+  
+.section_category h3{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 40px;
+    color: rgb(190, 123, 98);
+    text-align: center;
+  }
+  
+  .section_category .cards{
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-bottom: 2rem;  
+    /* background-color: bisque; */
+  }
+  
+  
+  .section_category .cards .card {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+  .section_category .cards .card:hover {
+    transform: translateY(-10px); /* card ali mathi janxa hover garda */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Adds a  shadow */
+  }
+  
+  
+  .section_category .cards .card p{
+    margin-top: 1rem;
+    font-size: 22px;
+    color: #2d3748;  
+  }
+  
+
 /******* ------START REVIEW LANDING PAGE--------- ********/
 .reviews {
     padding: 0 50px 0 50px;

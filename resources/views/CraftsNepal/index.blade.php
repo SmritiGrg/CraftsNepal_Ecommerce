@@ -1,5 +1,30 @@
 @extends('layouts.main')
 @section('container')
+
+    
+<div class="section_category">
+    <h3>Shop By Category</h3>
+  
+    <div class="cards">
+  
+      <div class="card">
+        <img src="asset/Images/pexels-clothing.jpg" alt="" height=400px width=350px>
+        <p>Clothing</p>
+      </div>
+  
+      <div class="card">
+        <img src="asset/Images/pexels-Accessories.jpg" alt="" height=400px width=350px>
+        <p>Accesories</p>
+      </div>
+  
+      <div class="card">
+        <img src="asset/Images/pexels-Art.jpg" alt="" height=400px width=350px>
+        <p>Art & Craft</p>
+      </div>
+  
+    </div>
+  </div>
+  
     {{-- ----- START PRODUCT REVIEW SECTION ----- --}}
     {{-- <section id = "reviews" class="reviews">
         <div class="heading">
