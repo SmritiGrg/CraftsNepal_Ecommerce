@@ -41,8 +41,6 @@
             class="flex flex-col lg:flex-row w-full sm:max-w-5xl mt-6 bg-white dark:bg-white shadow-lg overflow-hidden sm:rounded-lg border border-gray-200">
             {{ $slot }}
         </div>
-
-
     </div>
 </body>
 

@@ -1,9 +1,8 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 .nav-item {
-    padding: 10px 15px; 
-    margin: 0 10px;  
+    padding: 10px 15px;
+    margin: 0 10px;
     font-size: medium;
 }
 
@@ -12,15 +11,15 @@
 }
 
 .nav-link:hover {
-    color: #28a745 !important;  
+    color: #28a745 !important;
 }
 
 /******* ------START REVIEW LANDING PAGE--------- ********/
-.reviews{
+.reviews {
     padding: 0 50px 0 50px;
 }
 
-.heading{
+.heading {
     letter-spacing: 1px;
     margin: 30px 0px;
     padding: 10px 20px;
@@ -30,7 +29,7 @@
     align-items: center;
 }
 
-.heading h1{
+.heading h1 {
     font-size: 2.2rem;
     font-weight: 500;
     background-color: #202020;
@@ -38,19 +37,19 @@
     padding: 10px 20px;
 }
 
-.heading span{
+.heading span {
     font-size: 1.3rem;
     color: #252525;
-    margin-bottom:  10px;
+    margin-bottom: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
-.col{
+.col {
     width: 33%;
 }
 
-.product-info{
+/* .product-info{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,36 +61,36 @@
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
-}
+} */
 
-.reviewer{
+.reviewer {
     display: flex;
     align-items: center;
     padding-left: 5px;
 }
 
-.profile-img{
+.profile-img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
 }
 
-.profile-img img{
+.profile-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
 }
 
-.profile-info{
+.profile-info {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
     padding-left: 5px;
 }
 
-.profile-info strong{
+.profile-info strong {
     color: #3d3d3d;
     font-size: 12px;
     letter-spacing: 0.5px;
@@ -100,50 +99,55 @@
     font-style: normal;
 }
 
-.profile-info p{
+.profile-info p {
     color: #979797;
     font-size: 0.9rem;
     font-family: "Poppins", sans-serif;
     font-style: normal;
 }
 
-.content{
+.content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.content p{
+.content p {
     font-size: 1rem;
     color: #4b4b4b;
     letter-spacing: 0.5px;
 }
 
-.reviews i{
+.reviews i {
     color: #f9d71c;
     font-size: 20px;
 }
 /******* ------END REVIEW LANDING PAGE--------- ********/
 
-
 /******* ------START FOOTER--------- ********/
-footer{
-    background-color: #D4EBF8;
+footer {
+    /* background-color: #D4EBF8; */
+    background: linear-gradient(
+        to right,
+        rgb(255, 247, 237),
+        rgb(255, 237, 213),
+        rgb(254, 226, 226)
+    );
 }
 
 a {
     text-decoration: none;
-    color: #1B1833;
+    color: #1b1833;
 }
 
-h5{
+h5 {
     font-family: "Bebas Neue", sans-serif;
     font-size: 25px;
     letter-spacing: 2px;
 }
 
-.menu-item a{
+.menu-item a {
     letter-spacing: 0.1 px;
 }
 
@@ -151,23 +155,22 @@ h5{
     text-decoration: underline; 
 } */
 
-
 /****** ---START--- transition underline for texts of footer *****/
-.item-anchor{
+.item-anchor {
     display: inline-block;
     position: relative;
     padding-top: 5px;
 }
 
 .item-anchor::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     transform: scaleX(0);
     height: 1px;
     bottom: 0;
     left: 0;
-    background-color: #1A1A1D;
+    background-color: #1a1a1d;
     transition: transform 0.45s ease-out;
 }
 
@@ -175,20 +178,20 @@ h5{
     transform: scaleX(1);
 }
 
-.item-anchor1{
+.item-anchor1 {
     display: inline-block;
     position: relative;
 }
 
 .item-anchor1::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     transform: scaleX(0);
     height: 1px;
     bottom: 0;
     left: 0;
-    background-color: #1A1A1D;
+    background-color: #1a1a1d;
     transition: transform 0.45s ease-out;
 }
 
@@ -196,8 +199,3 @@ h5{
     transform: scaleX(1);
 }
 /****** ---END--- *****/
-
-
-
-
-

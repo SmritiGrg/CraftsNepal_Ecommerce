@@ -17,12 +17,23 @@
 
                 </ul>
                 <ul class="navbar-nav  ml-5 mr-5">
-                    <li class="nav-item mt-3 ml-5 mr-5">
+                    {{-- <li class="nav-item mt-3 ml-5 mr-5">
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                         </form>
+                    </li> --}}
+                    <li class="nav-item mt-3 ml-5 mr-5">
+                        <form class="d-flex">
+                            <div class="input-group">
+                                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </form>
                     </li>
+
                     <li class="nav-item dropdown mx-5">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">

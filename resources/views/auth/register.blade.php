@@ -222,7 +222,7 @@
                 </a>
 
                 <x-primary-button
-                    class="w-full inline-flex items-center justify-center bg-gradient-to-r from-orange-100 via-orange-200 to-orange-100 hover:bg-gradient-to-r hover:from-orange-200 hover:via-orange-300 hover:to-orange-400 text-black">
+                    class="w-full inline-flex items-center justify-center bg-gradient-to-rz from-orange-100 via-orange-200 to-orange-100 hover:bg-gradient-to-r hover:from-orange-200 hover:via-orange-300 hover:to-orange-400 text-black">
                     {{ __('Register') }}
                 </x-primary-button>
             </div>
