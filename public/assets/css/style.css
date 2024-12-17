@@ -16,6 +16,36 @@
     
 }
 
+/* image slider */
+
+.image-slider {
+    width:100%;
+    position: relative;
+  }
+  
+  .image-slider img {
+    width: 100%; 
+    max-height: 80vh;
+    object-fit: cover;  
+  } 
+  
+  .text1 {
+    position: absolute;
+    top: 150px;
+    left: 80px;
+    font-size: 45px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:rgb(201, 121, 92);
+  }
+  .text2 {
+    position: absolute;
+    top: 210px;
+    left: 100px;
+    font-size: 30px;
+    font-family:sans-serif;
+    color:rgb(190, 123, 98);
+  }
+
 /* Product_category  */
 
 .section_category{
@@ -250,6 +280,153 @@ h5{
     transform: scaleX(1);
 }
 /****** ---END--- *****/
+
+
+
+
+
+/* Product Description page*/
+.product_description {
+    width: 100%;
+    background-color: white;
+    padding: 1rem;
+  }
+  
+  .product_description h3 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-size: 40px;
+    color: rgb(201, 121, 92);
+    text-align: center;
+  }
+  
+  .product_description .product_card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product_description .product_card img {
+    border-radius: 10px;
+    margin-right: 4rem;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .product_description .product_details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .product_description .product_details h4 {
+    font-size: 28px;
+    color: black;
+    margin-bottom: 1rem;
+  }
+  
+  
+  .product_description .product_details p {
+    font-size: 18px;
+    color: rgb(100, 100, 100);
+    font-style: italic;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .product_description .product_price {
+    font-size: 20px;
+    color: #2d3748;
+    margin-bottom: 2rem;
+  }
+  
+  .product_description .product_actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .product_description .buy_now, .product_description .add_to_cart {
+    padding: 14px 28px;
+    font-size: 18px;
+    color: white;
+    background-color: cadetblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .product_description .buy_now:hover, .product_description .add_to_cart:hover {
+    background-color: rgb(49, 153, 156);
+    transform: translateY(-3px);
+  }
+  
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .product_description .product_card {
+      flex-direction: column; /* Stack image and details vertically */
+      padding: 1rem;
+    }
+  
+    .product_description .product_card img {
+      margin: 0 0 1.5rem 0; /* Remove right margin and add bottom margin */
+      max-width: 100%; /* Ensure it adjusts to smaller screens */
+    }
+  
+    .product_description .product_details {
+      max-width: 100%; /* Take full width on smaller screens */
+      padding: 1rem;
+    }
+  
+    .product_description .product_details h4 {
+      font-size: 24px; /* Adjust font sizes for better readability */
+    }
+  
+  
+    .product_description .product_details p {
+      font-size: 16px;
+    }
+  
+    .product_description .product_actions {
+      flex-direction: column; /* Stack buttons vertically */
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product_description h3 {
+      font-size: 30px; /* Adjust header font size for smaller screens */
+    }
+  
+    .product_description .product_details p {
+      font-size: 14px; /* Further reduce font size for small devices */
+    }
+  
+    .product_description .buy_now, .product_description .add_to_cart {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  }
+  
+
+
+
 
 
 
