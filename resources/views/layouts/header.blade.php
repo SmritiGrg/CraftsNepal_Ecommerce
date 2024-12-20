@@ -22,3 +22,41 @@
 </head>
 
 <body>
+
+    <header>
+
+      <div class="image-slider">
+        <img src="asset/Images/pexels-1.jpg" id="slide">
+        {{-- <div class="text1">Authentic Nepalese Handicrafts </div> --}}
+        {{-- <div class="text2">Where Tradition Meets Modern Design</div> --}}
+      </div> 
+    
+    
+      <script>
+        var img = [
+          "asset/Images/Clothing-1.jpg",
+          "asset/Images/slider-img-1.jpg",
+          "asset/Images/slider-img-2.jpg",
+          "asset/Images/slider-img-3.jpg",
+          "asset/Images/slider-img-4.jpg",
+          "asset/Images/pexels-clothing.jpg"
+        ];
+    
+    
+        var i = 0;
+        function slides() {
+            document.getElementById('slide').src = img[i];
+            if (i < img.length - 1)
+                i++;
+            else
+                i = 0;
+        }
+        setInterval(slides, 3000);
+      </script>  
+    
+      </header>
+    
+    
+    
+    
+    
