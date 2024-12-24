@@ -70,7 +70,13 @@
                 <div class="card product-card">
                     <img src="{{ asset('assets/img/bag.jpg') }}" class="card-img-top" alt="Product 1">
                     <div class="hover-buttons">
-                        <button class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
+                        <form action="{{ route('add.to.cart') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="1">
+                            <input type="hidden" name="name" value="Product 1">
+                            <input type="hidden" name="price" value="10.00">
+                            <button type="submit" class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
+                        </form>
                         <button class="btn-outline-custom">Details</button>
                     </div>
                     <div class="card-body">
