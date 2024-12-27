@@ -8,14 +8,27 @@
 
 .nav-link {
     color: #000;
+    font-size: 18px;
 }
 
 .nav-link:hover {
-    color: #28a745 !important;
+    color: #f0bb78 !important;
+}
+
+#signup {
+    background-color: #fff0dc;
+    border-radius: 20px;
+    padding: 5px 20px;
+    font-size: 18px;
+    transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+#signup:hover {
+    background-color: #f8d6aa;
+    color: black;
 }
 
 /* image slider */
-
 .image-slider {
     width: 100%;
     position: relative;

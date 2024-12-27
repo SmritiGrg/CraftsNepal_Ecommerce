@@ -73,7 +73,7 @@
             <p class="text-1xl font-bold text-center tracking-wider text-slate-50">New Here?</p>
         </div>
         <div>
-            <a href="{{ route('register') }}"><button type="button"
+            <a href="register"><button type="button"
                     class="text-black bg-gradient-to-r from-orange-100 via-orange-200 to-orange-100 hover:bg-gradient-to-r hover:from-orange-200 hover:via-orange-300 hover:to-orange-400  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">REGISTER</button></a>
         </div>
     </div>
