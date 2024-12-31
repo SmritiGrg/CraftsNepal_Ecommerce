@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('container')
     <div class="image-slider">
-        <img src="{{ asset('assets/img/pexels-1.jpg') }}" id="slide">
+        <img src="{{ asset('assets/img/side.jpg') }}" id="slide">
         {{-- <div class="text1">Authentic Nepalese Handicrafts </div> --}}
         {{-- <div class="text2">Where Tradition Meets Modern Design</div> --}}
     </div>
@@ -335,10 +335,10 @@
     <script>
         var img = [
             "{{ asset('assets/img/Clothing-1.jpg') }}",
-            "{{ asset('assets/img/slider-img-1.jpg') }}",
+            "{{ asset('assets/img/threadcarousel.jpg') }}",
             "{{ asset('assets/img/slider-img-2.jpg') }}",
             "{{ asset('assets/img/slider-img-3.jpg') }}",
-            "{{ asset('assets/img/slider-img-4.jpg') }}",
+            "{{ asset('assets/img/scarf_carousel.jpg') }}",
             "{{ asset('assets/img/pexels-clothing.jpg') }}"
         ];
 

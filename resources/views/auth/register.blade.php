@@ -84,9 +84,11 @@
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" class="!text-slate-600" />
                 <x-text-input id="email"
-                    class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-purple-500 focus:border-purple-500"
-                    type="email" name="email" :value="old('email')" required autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-purple-500 focus:border-purple-500 @error('email') is-invalid 
+                        
+                    @enderror"
+                    type="text" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2 invalid-feedback" />
             </div>
 
             <!-- Password -->
@@ -114,12 +116,12 @@
             <div class="flex flex-col items-center justify-center mt-4">
                 <a class="underline text-sm text-gray-400 hover:text-gray-500 rounded-md mb-4"
                     href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    Already registered?
                 </a>
 
                 <x-primary-button
                     class="w-full inline-flex items-center justify-center bg-gradient-to-rz from-orange-100 via-orange-200 to-orange-100 hover:bg-gradient-to-r hover:from-orange-200 hover:via-orange-300 hover:to-orange-400 text-black">
-                    {{ __('Register') }}
+                    Register
                 </x-primary-button>
             </div>
         </form>

@@ -32,6 +32,7 @@
 .image-slider {
     width: 100%;
     position: relative;
+    height: calc(100vh - 60px);
 }
 
 .image-slider img {
@@ -42,7 +43,7 @@
     height: 100%;
     object-fit: cover; /* This ensures the image covers the area without stretching */
     object-position: center; /* This ensures the image stays centered */
-    max-height: 80vh;
+    max-height: 100vh;
 }
 
 .text1 {
