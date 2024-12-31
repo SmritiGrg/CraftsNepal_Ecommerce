@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'city' => 'Admin City',
             'address' => '123 Admin Street',
             'image' => 'admin.jpg', // Replace with a valid image path or default image
-            'email' => 'admin@example.com',
+            'email' => 'admin@gmail.com',
             'role' => 'admin', // Assuming 'admin' is a valid role
             'password' => Hash::make('admin123'), // Secure hashed password
         ]);
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'city' => 'Customer City',
             'address' => '456 Customer Avenue',
             'image' => 'customer.jpg', // Replace with a valid image path or default image
-            'email' => 'customer@example.com',
+            'email' => 'customer@gmail.com',
             'role' => 'customer', // Assuming 'customer' is a valid role
             'password' => Hash::make('customer123'), // Secure hashed password
         ]);
