@@ -49,6 +49,27 @@
                 <!-- Components -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Pages</span></li>
                 <!-- User interface -->
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-box"></i>
+                        <div data-i18n="User interface">Product Category</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="{{route('productCategory.create') }}" class="menu-link">
+                                <div data-i18n="Accordion">Create</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{route('productCategory.index') }}" class="menu-link">
+                                <div data-i18n="Alerts">Index</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
                 <li class="menu-item">
                     <a href="javascript:void(0)" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-box"></i>
@@ -56,12 +77,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="" class="menu-link">
                                 <div data-i18n="Accordion">Create</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-alerts.html" class="menu-link">
+                            <a href="" class="menu-link">
                                 <div data-i18n="Alerts">Index</div>
                             </a>
                         </li>
