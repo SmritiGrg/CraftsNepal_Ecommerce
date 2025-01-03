@@ -21,10 +21,10 @@ class UserSeeder extends Seeder
             'phone_number' => '9876543210',
             'city' => 'Admin City',
             'address' => '123 Admin Street',
-            'image' => 'admin.jpg', // Replace with a valid image path or default image
+            'image' => 'admin.jpg', 
             'email' => 'admin@gmail.com',
-            'role' => 'admin', // Assuming 'admin' is a valid role
-            'password' => Hash::make('admin123'), // Secure hashed password
+            'role' => 'admin', 
+            'password' => Hash::make('admin123'), 
         ]);
 
         // Customer User
@@ -34,10 +34,10 @@ class UserSeeder extends Seeder
             'phone_number' => '1234567890',
             'city' => 'Customer City',
             'address' => '456 Customer Avenue',
-            'image' => 'customer.jpg', // Replace with a valid image path or default image
+            'image' => 'customer.jpg', 
             'email' => 'customer@gmail.com',
-            'role' => 'customer', // Assuming 'customer' is a valid role
-            'password' => Hash::make('customer123'), // Secure hashed password
+            'role' => 'customer', 
+            'password' => Hash::make('customer123'), 
         ]);
     }
 }

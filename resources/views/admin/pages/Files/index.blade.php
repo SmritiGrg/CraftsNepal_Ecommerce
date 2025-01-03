@@ -8,8 +8,7 @@
     @endif
     <div class="container py-4">
         <a href="{{ route('file.create') }}" class="btn btn-primary my-3">Add</a>
-        <table class="table table-secondary 
-         table-hover table-bordered table-sm table-responsive-sm">
+        <table class="table table-secondary table-hover table-bordered table-sm table-responsive-sm">
             <thead>
                 <tr>
                     <th scope="col">S.N</th>
