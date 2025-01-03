@@ -7,8 +7,9 @@
         </div>
     @endif
     <div class="container py-4">
+        <h3>Customer Lists</h3>
         <table class="table table-secondary table-hover table-bordered table-sm table-responsive-sm">
-            <thead>
+            <thead class="bg">
                 <tr>
                     <th scope="col">S.N</th>
                     <th scope="col">Full Name</th>

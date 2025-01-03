@@ -28,7 +28,7 @@
                     <x-input-label for="first_name" :value="__('First Name')" class="!text-slate-600" />
                     <x-text-input id="first_name"
                         class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-gray-500 focus:border-gray-500"
-                        type="text" name="first_name" :value="old('first_name')" required autofocus
+                        :error="$errors->has('first_name')" type="text" name="first_name" :value="old('first_name')" autofocus
                         autocomplete="given-name" />
                     <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
                 </div>
@@ -38,7 +38,8 @@
                     <x-input-label for="last_name" :value="__('Last Name')" class="!text-slate-600" />
                     <x-text-input id="last_name"
                         class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-gray-500 focus:border-gray-500"
-                        type="text" name="last_name" :value="old('last_name')" required autocomplete="family-name" />
+                        :error="$errors->has('last_name')" type="text" name="last_name" :value="old('last_name')"
+                        autocomplete="family-name" />
                     <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                 </div>
 
@@ -47,7 +48,7 @@
                     <x-input-label for="phone_number" :value="__('Phone Number')" class="!text-slate-600" />
                     <x-text-input id="phone_number"
                         class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-gray-500 focus:border-gray-500"
-                        type="text" name="phone_number" :value="old('phone_number')" required autocomplete="tel" />
+                        :error="$errors->has('phone_number')" type="text" name="phone_number" :value="old('phone_number')" autocomplete="tel" />
                     <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
                 </div>
 
@@ -56,7 +57,8 @@
                     <x-input-label for="city" :value="__('City')" class="!text-slate-600" />
                     <x-text-input id="city"
                         class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-gray-500 focus:border-gray-500"
-                        type="text" name="city" :value="old('city')" required autocomplete="address-level2" />
+                        :error="$errors->has('city')" type="text" name="city" :value="old('city')"
+                        autocomplete="address-level2" />
                     <x-input-error :messages="$errors->get('city')" class="mt-2" />
                 </div>
 
@@ -65,7 +67,8 @@
                     <x-input-label for="address" :value="__('Address')" class="!text-slate-600" />
                     <x-text-input id="address"
                         class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-gray-500 focus:border-gray-500"
-                        type="text" name="address" :value="old('address')" required autocomplete="address-line1" />
+                        :error="$errors->has('address')" type="text" name="address" :value="old('address')"
+                        autocomplete="address-line1" />
                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
                 </div>
 
@@ -74,7 +77,7 @@
                     <x-input-label for="image" :value="__('Profile Image')" class="!text-slate-600" />
                     <x-text-input id="image"
                         class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-gray-500 focus:border-gray-500"
-                        type="file" name="image" accept="image/*" />
+                        :error="$errors->has('image')" type="file" name="image" accept="image/*" />
                     <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
 
@@ -84,10 +87,8 @@
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" class="!text-slate-600" />
                 <x-text-input id="email"
-                    class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-purple-500 focus:border-purple-500 @error('email') is-invalid 
-                        
-                    @enderror"
-                    type="text" name="email" :value="old('email')" required autocomplete="username" />
+                    class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-purple-500 focus:border-purple-500"
+                    :error="$errors->has('email')" type="text" name="email" :value="old('email')" autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2 invalid-feedback" />
             </div>
 
@@ -97,7 +98,7 @@
 
                 <x-text-input id="password"
                     class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-purple-500 focus:border-purple-500"
-                    type="password" name="password" required autocomplete="new-password" />
+                    :error="$errors->has('password')" type="password" name="password" autocomplete="new-password" />
 
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
@@ -108,7 +109,7 @@
 
                 <x-text-input id="password_confirmation"
                     class="block mt-1 w-full !text-slate-400 !bg-white !border-gray-300 focus:ring-purple-500 focus:border-purple-500"
-                    type="password" name="password_confirmation" required autocomplete="new-password" />
+                    :error="$errors->has('password_confirmation')" type="password" name="password_confirmation" autocomplete="new-password" />
 
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
@@ -119,8 +120,7 @@
                     Already registered?
                 </a>
 
-                <x-primary-button
-                    class="w-full inline-flex items-center justify-center bg-gradient-to-rz from-orange-100 via-orange-200 to-orange-100 hover:bg-gradient-to-r hover:from-orange-200 hover:via-orange-300 hover:to-orange-400 text-black">
+                <x-primary-button>
                     Register
                 </x-primary-button>
             </div>

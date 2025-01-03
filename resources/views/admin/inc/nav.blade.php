@@ -78,10 +78,17 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="auth-login-basic.html">
-                                        <i class="bx bx-power-off me-2"></i>
-                                        <span class="align-middle">Log Out</span>
-                                    </a>
+                                    {{-- <span class="align-middle">Log Out</span> --}}
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-responsive-nav-link class="text-black" :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                            Log Out
+                                        </x-responsive-nav-link>
+                                    </form>
+
                                 </li>
                             </ul>
                         </li>
