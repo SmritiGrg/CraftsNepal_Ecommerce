@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('/file', FileController::class);
-    Route::resource('/productCategort', ProductCategoryController::class);
+    Route::resource('/productCategory', ProductCategoryController::class);
 });
 
 require __DIR__ . '/auth.php';
