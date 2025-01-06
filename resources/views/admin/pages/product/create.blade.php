@@ -151,10 +151,9 @@
                       
 
                         <!-- Submit Button -->
-                        <div class="text-center">
+                        <div class="text-center d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary px-5 py-2 fw-semibold">Add Product</button>
                             <button type="reset" class="btn btn-primary px-5 py-2 fw-semibold">Reset</button>
-
                         </div>
 
                     </div>
