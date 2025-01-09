@@ -34,7 +34,7 @@
                         <!-- Product Price -->
                         <div class="mb-4">
                             <label for="price" class="form-label fw-semibold">Price (Rs)</label>
-                            <input type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Enter product price" value="{{ old('price') }}" required>
+                            <input type="number" name="price" id="price" class="form-control @error('price') is-invalid @enderror" placeholder="Enter product price" value="{{ old('price') }}" min="1" required>
                             @error('price')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -42,7 +42,7 @@
                         {{-- product stock --}}
                         <div class="mb-4">
                             <label for="stock" class="form-label fw-semibold">Stock</label>
-                            <input type="number" name="stock" id="stock" class="form-control @error('stock') is-invalid @enderror" placeholder="Enter product price" value="{{ old('stock') }}" required>
+                            <input type="number" name="stock" id="stock" class="form-control @error('stock') is-invalid @enderror" placeholder="Enter product quantity" value="{{ old('stock') }}" min="1" required>
                             @error('stock')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

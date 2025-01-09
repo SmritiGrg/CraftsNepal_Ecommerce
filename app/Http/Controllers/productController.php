@@ -28,8 +28,8 @@ class productController extends Controller
         $use=$request->validate([
             'name' => 'required',
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'stock'=>'required|numeric',
+            'price' => 'required|numeric|min:1', 
+            'stock' => 'required|integer|min:1',
             'category_id'=>'required',
             'image' => 'required|string',
         ]);
@@ -43,7 +43,7 @@ class productController extends Controller
             'category_id'=>$request->category_id,
             'image' => $request->image,
         ]);
-        return redirect()->back()->with('sucess','product sucessfully insert');   
+        return redirect()->route('product.index')->with('success', 'Product edit successfully!');  
     }
 
     public function show($id){

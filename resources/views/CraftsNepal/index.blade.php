@@ -81,72 +81,36 @@
                 </ul>
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4 ">
-
-            <div class="col">
-                <div class="card product-card">
-                    <img src="{{ asset('assets/img/bag.jpg') }}" class="card-img-top" alt="Product 1">
-                    <div class="hover-buttons">
-                        <button class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
-                        <button class="btn-outline-custom">Details</button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Bag </h5>
-                        <p class="card-text text-muted">Rs 500</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card product-card">
-                    <img src="{{ asset('assets/img/art.jpg') }}" class="card-img-top" alt="Product 2">
-                    <div class="hover-buttons">
-                        <button class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
-                        <button class="btn-outline-custom">Details</button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Rajasthani patchwork</h5>
-                        <p class="card-text text-muted">RS 600</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card product-card">
-                    <img src="{{ asset('assets/img/jacket_black.jpg') }}" class="card-img-top" alt="Product 3">
-                    <div class="hover-buttons">
-                        <button class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
-                        <button class="btn-outline-custom">Details</button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Jacket Black and white</h5>
-                        <p class="card-text text-muted">Rs 1000</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+            @foreach ($products as $product)
+                <div class="col">
+                    <div class="card product-card">
+                        <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                        <div class="hover-buttons">
+                            <form action="{{ route('cart.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$product->id}}">
+                                <input type="hidden" name="name" value="{{$product->name}}">
+                                <input type="hidden" name="price" value="{{$product->price}}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
+                            </form>
+                            <button class="btn-outline-custom">Details</button>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text text-muted">Rs {{ $product->price }}</p>
+                            <div class="star-rating">
+                                {{-- @for ($i = 1; $i <= 5; $i++)
+                                    <i class="{{ $i <= $product->rating ? 'fas' : 'far' }} fa-star"></i>
+                                @endfor --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        {{-- <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
 
             <div class="col">
                 <div class="card product-card">
@@ -210,7 +174,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     {{-- ----- START PRODUCT REVIEW SECTION ----- --}}

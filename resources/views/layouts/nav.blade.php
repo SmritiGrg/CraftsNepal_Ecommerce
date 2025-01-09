@@ -29,7 +29,7 @@
                         </li>
                         @auth
                             <li class="nav-item ">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="/cart">
                                     <i class="bi bi-cart fs-3"></i>
                                 </a>
                             </li>
