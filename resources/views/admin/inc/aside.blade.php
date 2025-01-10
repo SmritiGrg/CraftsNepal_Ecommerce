@@ -77,12 +77,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{route('product.create')}}" class="menu-link">
                                 <div data-i18n="Accordion">Create</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{route('product.index')}}" class="menu-link">
                                 <div data-i18n="Alerts">Index</div>
                             </a>
                         </li>
