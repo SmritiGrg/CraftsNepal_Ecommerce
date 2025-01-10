@@ -3,7 +3,16 @@
 @section('container')
 <div class="container my-5">
     <h2 class="mb-4 text-center">🛒 Shopping Cart</h2>
-
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <div class="row">
         {{-- Cart Items Section --}}
         @php

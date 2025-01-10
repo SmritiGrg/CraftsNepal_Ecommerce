@@ -1,6 +1,16 @@
 @extends('layouts.main')
 
 @section('container')
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="container my-4">
     <h2 class="text-center mb-4">Checkout</h2>
 
@@ -22,10 +32,10 @@
     <form action="{{ route('order.place') }}" method="POST" class="mt-4">
         @csrf
         <div class="mb-3">
-            <label for="address" class="form-label">Delivery Address</label>
-            <textarea name="address" id="address" class="form-control" rows="3" required></textarea>
+            <label for="order_detail" class="form-label">Delivery Order Details</label>
+            <textarea name="order_detail" id="order_detail" class="form-control" rows="3" required></textarea>
         </div>
         <button type="submit" class="btn btn-success w-100">Place Order</button>
     </form>
-</div>
+    
 @endsection
