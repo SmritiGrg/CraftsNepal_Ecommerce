@@ -30,6 +30,7 @@ Route::post('/cart/add', [cartController::class, 'addToCart'])->name('cart.add')
 Route::patch('/cart/{id}/update', [CartController::class, 'update'])->name('cart.update');
 
 Route::delete('/cart/remove/{id}', [cartController::class, 'remove'])->name('cart.remove');
+
 Route::get('/checkout', [cartController::class, 'checkout'])->name('cart.checkout');
 Route::post('/order/place', [cartController::class, 'placeOrder'])->name('order.place');
 
