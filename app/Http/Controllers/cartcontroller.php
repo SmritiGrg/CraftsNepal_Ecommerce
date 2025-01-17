@@ -86,30 +86,35 @@ class cartcontroller extends Controller
     
     
     public function placeOrder(Request $request)
-    {
-        $cartItems = Cart::where('customer_id', auth()->id())->get();
-    
-        $order = Order::create([
-            'customer_id' => auth()->id(),
-            'total' => $cartItems->sum(function ($item) {
-                return $item->product->price * $item->quantity;
-            }),
-            'address' => $request->address,
-            'status' => 'Pending',
-        ]);
-    
-        foreach ($cartItems as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item->product_id,
-                'quantity' => $item->quantity,
-            ]);
-        }
-    
-        // Clear the cart
-        Cart::where('customer_id', auth()->id())->delete();
-    
-        return redirect()->route('cart.page')->with('success', 'Order placed successfully!');
+{
+    $cartItems = Cart::where('user_id', auth()->id())->get();
+
+    if ($cartItems->isEmpty()) {
+        return redirect()->route('cart.page')->with('error', 'Your cart is empty!');
     }
+//dd($cartItems);
+    $order = Order::create([
+        'user_id' => auth()->id(),
+        'total_price' => $cartItems->sum(fn($item) => $item->product->price * $item->quantity),
+        'order_details' => $request->order_detail,
+        'order_status' => 'Pending',
+        'order_date' => now(),
+    ]);
+
+    foreach ($cartItems as $item) {
+        OrderItem::create([
+            'order_id' => $order->id,
+            'product_id' => $item->product_id,
+            'order_quantity' => $item->quantity,
+            'price' => $item->price,
+        ]);
+    }
+
+    
+    Cart::where('user_id', auth()->id())->delete();
+
+    return redirect()->route('cart.page')->with('success', 'Order placed successfully!');
+}
+
     
 }

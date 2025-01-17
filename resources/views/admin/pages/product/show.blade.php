@@ -6,6 +6,16 @@
         <div class="card-header bg-dark text-white">
             <h1 class="text-center">Product Details</h1>
         </div>
+        @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
         <div class="card-body">
             <div class="row mb-3">
                 <div class="col-md-4 font-weight-bold">Name:</div>

@@ -3,6 +3,16 @@
 @section('container')
 <div class="container my-4">
     <h2 class="text-center mb-4">Product List</h2>
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <a href="{{ route('product.create') }}" class="btn btn-primary my-3">Add</a>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">

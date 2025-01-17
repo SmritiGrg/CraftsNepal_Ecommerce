@@ -43,7 +43,7 @@ class productController extends Controller
             'category_id'=>$request->category_id,
             'image' => $request->image,
         ]);
-        return redirect()->route('product.index')->with('success', 'Product edit successfully!');  
+        return redirect()->route('product.index')->with('success', 'Product add successfully!');  
     }
 
     public function show($id){
