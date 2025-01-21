@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File as Files;
+
 
 class ProfileController extends Controller
 {
@@ -30,6 +33,24 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        // Check if an image was uploaded
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Delete the old image if it exists
+            $oldImage = $request->user()->image;
+            if ($oldImage && file_exists(public_path('uploads/' . $oldImage))) {
+                unlink(public_path('uploads/' . $oldImage));
+            }
+
+            // Create a new file name
+            $fileName = Str::slug($request->user()->first_name . '-' . $request->user()->last_name) . '-' . time() . '.' . $request->image->extension();
+
+            // Move the uploaded image to the 'uploads' directory
+            $request->image->move(public_path('uploads'), $fileName);
+
+            // Update the user's image path
+            $request->user()->image = $fileName;
         }
 
         $request->user()->save();
