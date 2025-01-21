@@ -60,7 +60,7 @@
                                     dropdown mx-5">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-person-circle fs-2"></i>
+                                    <img src="{{ asset('uploads/' . auth()->user()->image) }}" alt="Profile" class="rounded-circle" width="40" height="40">
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="profile">Profile</a></li>
