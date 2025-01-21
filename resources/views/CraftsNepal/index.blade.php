@@ -95,7 +95,7 @@
                                 <input type="hidden" name="quantity" value="1">
                                 <button type="submit" class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
                             </form>
-                            <button class="btn-outline-custom">Details</button>
+                            <a href="{{ route('userproduct.show',  $product->id) }}" class="btn-outline-custom">Details</a>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
