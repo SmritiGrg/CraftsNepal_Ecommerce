@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\cartcontroller;
+use App\Http\Controllers\customerProductController;
+use App\Http\Controllers\cutomerOrderController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\productController;
@@ -33,7 +35,8 @@ Route::delete('/cart/remove/{id}', [cartController::class, 'remove'])->name('car
 
 Route::get('/checkout', [cartController::class, 'checkout'])->name('cart.checkout');
 Route::post('/order/place', [cartController::class, 'placeOrder'])->name('order.place');
-
+Route::resource('userproduct',customerProductController::class);
+Route::resource('userorder',cutomerOrderController::class);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

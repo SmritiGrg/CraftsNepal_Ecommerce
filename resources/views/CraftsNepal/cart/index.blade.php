@@ -74,9 +74,14 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a href="{{ url('/') }}" class="text-primary">
-                    ← Continue Shopping
-                </a>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <a href="{{ url('/') }}" class="text-primary">
+                        ← Continue Shopping
+                    </a>
+                    <a href="{{ route('userorder.index') }}" class="text-primary">
+                        <i class="fas fa-folder"></i> Order History
+                    </a>
+                </div>                
             @endif
         </div>
 

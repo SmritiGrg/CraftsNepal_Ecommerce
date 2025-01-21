@@ -33,6 +33,11 @@
                                     <i class="bi bi-cart fs-3"></i>
                                 </a>
                             </li>
+                            {{-- <li class="nav-item ">
+                                <a class="nav-link" href="{{route('userorder.index')}}">
+                                    <i class="bi bi-cart fs-3"></i>
+                                </a>
+                            </li> --}}
                         @endauth
 
                         <li class="nav-item mt-3 ml-5 mr-5">
