@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\adminOrderController;
 use App\Http\Controllers\cartcontroller;
 use App\Http\Controllers\customerProductController;
 use App\Http\Controllers\cutomerOrderController;
@@ -44,6 +45,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('admin/file', FileController::class);
     Route::resource('/productCategory', ProductCategoryController::class);
     Route::resource('product',productController::class);
+    Route::resource('admin/order',adminOrderController::class);
 });
 
 require __DIR__ . '/auth.php';
