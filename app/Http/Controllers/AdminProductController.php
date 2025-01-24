@@ -9,7 +9,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
 
-class productController extends Controller
+class AdminProductController extends Controller
 {
     public function index(){
         $products = Product::with('category')->get();

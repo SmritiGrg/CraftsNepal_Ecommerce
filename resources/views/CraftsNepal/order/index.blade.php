@@ -13,9 +13,18 @@
                     <h5 class="mb-0">Order #{{ $order->id }}</h5>
                     <small class="text-muted">{{ $order->order_date }}</small>
                 </div>
-                <span class="badge {{ $order->order_status == 'Pending' ? 'bg-warning text-dark' : 'bg-success' }}">
-                    {{ $order->order_status }}
-                </span>
+                <span class="badge 
+                   @if ($order->order_status == 'Pending') 
+                      bg-warning text-dark 
+                   @elseif ($order->order_status == 'Completed') 
+                      bg-success 
+                   @elseif ($order->order_status == 'Cancelled') 
+                      bg-danger 
+                   @else 
+                      bg-secondary 
+                   @endif">
+                {{ $order->order_status }}
+             </span>
                 {{-- <img src="{{ $order->user->avatar ?? '/default-avatar.png' }}" alt="User Avatar" 
                      class="rounded-circle" style="width: 40px; height: 40px;"> --}}
             </div>

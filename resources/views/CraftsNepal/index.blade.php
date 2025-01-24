@@ -34,53 +34,7 @@
             <span>Products</span>
             <h1>Our Best Products</h1>
         </div>
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-funnel"></i> Filter
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                    <li>
-                        <label class="dropdown-item">
-                            <input type="checkbox" name="category" value="bags" class="form-check-input me-2">
-                            Bags
-                        </label>
-                    </li>
-                    <li>
-                        <label class="dropdown-item">
-                            <input type="checkbox" name="category" value="clothing" class="form-check-input me-2">
-                            Clothing
-                        </label>
-                    </li>
-                    <li>
-                        <label class="dropdown-item">
-                            <input type="checkbox" name="category" value="decor" class="form-check-input me-2">
-                            Decor
-                        </label>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-sort-down"></i> Sort
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                    <li>
-                        <a class="dropdown-item" href="?sort=price_asc">Price: Low to High</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="?sort=price_desc">Price: High to Low</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="?sort=rating_desc">Rating: High to Low</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
             @foreach ($products as $product)
                 <div class="col">
