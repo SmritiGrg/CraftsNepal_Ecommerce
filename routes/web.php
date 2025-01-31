@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('CraftsNepal/index');
 // });
+
 Route::resource('/',HomeController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('userproduct',customerProductController::class);
 
 Route::middleware('auth')->group(function () {
     // Route::get('/', function () {
@@ -36,7 +39,7 @@ Route::delete('/cart/remove/{id}', [cartController::class, 'remove'])->name('car
 
 Route::get('/checkout', [cartController::class, 'checkout'])->name('cart.checkout');
 Route::post('/order/place', [cartController::class, 'placeOrder'])->name('order.place');
-Route::resource('userproduct',customerProductController::class);
+// Route::resource('userproduct',customerProductController::class);
 Route::resource('userorder',customerOrderController::class);
 });
 

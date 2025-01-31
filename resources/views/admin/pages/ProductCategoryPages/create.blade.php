@@ -11,9 +11,6 @@
         </div>
     @endif
 
-
-
-
     <main class="container my-3">
         <a href="{{route('productCategory.index')}}" class="btn btn-primary my-3">Back</a>
         <form action="{{ route('productCategory.store') }}" method="POST" enctype="multipart/form-data">
@@ -29,10 +26,20 @@
                 
                 <div class="card-body">
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label class="form-label" for="basic-default-fullname">Product Category Name</label>
                         <input type="text" name="title" class="form-control" id="basic-default-fullname" />
+                    </div> --}}
+
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-default-category">Product Category</label>
+                        <select name="title" class="form-control" id="basic-default-category">
+                            <option value="Clothing">Clothing</option>
+                            <option value="Art and Craft">Art and Craft</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
                     </div>
+                    
 
                     <div class="mb-3">
                         <div class="img-scrapper">
