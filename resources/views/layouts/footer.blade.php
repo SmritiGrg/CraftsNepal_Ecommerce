@@ -4,7 +4,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="footer-menu footer-menu-001">
                     <div class="footer-intro mb-4">
-                        <a href="index.html">
+                        <a href="{{url('/')}}">
                             <img src="assets/img/Logo_Crafts-removebg.png" alt="logo" width="150px", height="100px">
                         </a>
                     </div>
@@ -21,7 +21,7 @@
                     <h5 class="widget-title text-uppercase mb-4">Quick Links</h5>
                     <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
                         <li class="menu-item">
-                            <a href="index.html" class="item-anchor">Home</a>
+                            <a href="{{url('/')}}" class="item-anchor">Home</a>
                         </li>
                         <li class="menu-item">
                             <a href="index.html" class="item-anchor">Product</a>

@@ -9,9 +9,17 @@ class customerOrderController extends Controller
 {
     public function index()
     {
-//dd('hello');
-        $orders = Order::with('items')->get();
+         $id=auth()->id();
+         $orders = Order::with('items') 
+         ->where('user_id', $id) 
+         ->get();
 
         return view('CraftsNepal.order.index', compact('orders'));
+    }
+    public function show($id){
+
+    }
+    public function error(){
+        
     }
 }

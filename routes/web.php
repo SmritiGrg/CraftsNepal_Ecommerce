@@ -7,15 +7,19 @@ use App\Http\Controllers\customerProductController;
 use App\Http\Controllers\customerOrderController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KhaltiPaymentController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('CraftsNepal/index');
 // });
 Route::resource('/',HomeController::class);
+Route::get('/search', [SearchController::class, 'search'])->name('products.search');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -24,6 +28,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('/', function () {
     //     return view('admin.index');
     // })->name('admin.index');
+    Route::post('/verify-payment', [KhaltiPaymentController::class, 'verifyPayment']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -38,6 +43,8 @@ Route::get('/checkout', [cartController::class, 'checkout'])->name('cart.checkou
 Route::post('/order/place', [cartController::class, 'placeOrder'])->name('order.place');
 Route::resource('userproduct',customerProductController::class);
 Route::resource('userorder',customerOrderController::class);
+Route::get('order',[customerOrderController::class,'error'])->name('order.error');
+
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
