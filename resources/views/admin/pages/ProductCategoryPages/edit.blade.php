@@ -26,10 +26,20 @@
             
             <div class="card-body">
                 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">ProductCategory Name</label>
                     <input type="text" name="title" class="form-control" id="basic-default-fullname" value="{{$productCategory->title}}"/>
+                </div> --}}
+
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-category">Product Category</label>
+                    <select name="title" class="form-control" id="basic-default-category">
+                        <option value="Clothing" {{ $productCategory->title == 'Clothing' ? 'selected' : '' }}>Clothing</option>
+                        <option value="Art and Craft" {{ $productCategory->title == 'Art and Craft' ? 'selected' : '' }}>Art and Craft</option>
+                        <option value="Accessories" {{ $productCategory->title == 'Accessories' ? 'selected' : '' }}>Accessories</option>
+                    </select>
                 </div>
+                
 
                 <div class="mb-3">
                     <div class="img-scrapper">

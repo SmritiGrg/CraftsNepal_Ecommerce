@@ -23,7 +23,7 @@
             @if($cartItems->isEmpty())
                 <div class="text-center">
                     <p>Your cart is empty!</p>
-                    <a href="{{ url('/') }}" class="btn btn-primary">Continue Shopping</a>
+                    <a href="{{ route('userproduct.index') }}" class="btn btn-primary">Continue Shopping</a>
                     <a href="{{ route('userorder.index') }}" class="btn btn-primary">Order History</a>
 
                 </div>

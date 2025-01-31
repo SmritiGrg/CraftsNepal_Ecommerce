@@ -22,7 +22,7 @@
                             <a class="nav-link" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item mt-2">
-                            <a class="nav-link" href="/product">Product</a>
+                            <a class="nav-link" href="{{route('userproduct.index')}}">Product</a>
                         </li>
                         <li class="nav-item mt-2">
                             <a class="nav-link" href="#">Blog</a>

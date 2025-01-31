@@ -13,6 +13,7 @@ class ProductCategoryController extends Controller
      //  $table->id('product_category_id');
     //  $table->string('title');
     //  $table->string('image');
+    private const DROPDOWN_OPTIONS = ['Clothing', 'Art and Craft', 'Accessories'];
 
 
     public function index()
@@ -27,7 +28,8 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        $files = File::all(); // or however you fetch the files
+        $files = File::all(); 
+        $dropdownOptions = self::DROPDOWN_OPTIONS;
         return view('admin.pages.ProductCategoryPages.create', compact('files'));
     }
 
@@ -68,6 +70,7 @@ class ProductCategoryController extends Controller
     {
         $files = File::all(); // Retrieve all images for selection in the edit view
         $productCategory = productCategory::query()->where('id',$id)->get()->first();
+        $dropdownOptions = self::DROPDOWN_OPTIONS; 
         return view('admin.pages.ProductCategoryPages.edit', compact('productCategory', 'files'));
     }
 
@@ -104,5 +107,7 @@ class ProductCategoryController extends Controller
         return redirect()->route('productCategory.index')->with('message', 'Edited Successfully');
         // return redirect('admin.pages/ProductCategoryPage')->with('message', 'Deleted Successfully');
     }
+
+    
 }
 

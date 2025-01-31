@@ -22,6 +22,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::resource('userproduct', customerProductController::class);
+
 Route::middleware('auth')->group(function () {
     // Route::get('/', function () {
     //     return view('admin.index');
