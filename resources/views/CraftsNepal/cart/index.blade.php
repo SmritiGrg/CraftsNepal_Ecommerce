@@ -47,9 +47,9 @@
                             <tr>
                                 <td class="d-flex align-items-center">
                                     <img src="{{ asset('uploads/' . $item->product->image) }}" 
-                                         alt="{{ $item->product->name }}" 
-                                         class="img-thumbnail me-3" 
-                                         style="width: 60px; height: 60px; object-fit: cover;">
+                                        alt="{{ $item->product->name }}" 
+                                        class="img-thumbnail me-3" 
+                                        style="width: 60px; height: 60px; object-fit: cover;">
                                     <div>
                                         <h6>{{ $item->product->name }}</h6>
                                     </div>

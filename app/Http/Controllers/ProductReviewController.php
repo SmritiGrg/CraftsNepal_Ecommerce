@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class ProductReviewController extends Controller
 {
     //
-    public function create($productId)
+    public function create($id)
     {
-        return view('productReview.create', compact('productId'));
+        return view('CraftsNepal.productReview.create', compact('id'));
     }
 
     /**
@@ -25,12 +25,16 @@ class ProductReviewController extends Controller
         // dd($request);
         $review = new ProductReview;
         $request->validate([
+            'product_id' => 'required|exists:product,id', // Ensure product_id is valid
             'comment' => 'required|string|max:255',
             'rating' => 'required|integer|min:1|max:5',
         ]);
+
+        // Create a new review
+        $review->product_id = $request->product_id; // Assign product_id
+        $review->user_id = Auth::id(); // Get authenticated user's ID
         $review->comment = $request->comment;
         $review->rating = $request->rating;
-        $review->user_id = Auth::user()->id;
         $review->save();
 
         return redirect()->back()->with('success', 'Review submitted successfully.');

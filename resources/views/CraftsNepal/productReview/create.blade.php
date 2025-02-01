@@ -1,4 +1,4 @@
-@extends('layouts.main')
+{{-- @extends('layouts.main')
 @section('container')
 
 <div class="container">
@@ -10,9 +10,9 @@
         </div>
     @endif
 
-    <form action="{{ route('product.review.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('product-reviews.store') }}" method="POST" class="space-y-4">
         @csrf
-        <input type="hidden" name="product_id" value="{{ $productId }}">
+        <input type="hidden" name="product_id" value="{{ $id }}">
 
         <div class="form-group">
             <label for="rating" class="block font-semibold mb-2">Rating (1-5 Stars)</label>
@@ -41,4 +41,4 @@
     </form>
 </div>
 
-@endsection
+@endsection --}}

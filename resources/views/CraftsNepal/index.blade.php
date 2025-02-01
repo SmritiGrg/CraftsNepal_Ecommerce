@@ -5,7 +5,6 @@
         {{-- <div class="text1">Authentic Nepalese Handicrafts </div> --}}
         {{-- <div class="text2">Where Tradition Meets Modern Design</div> --}}
     </div>
-    {{-- <a href="{{ route('product-reviews.create', ['productId' => $product->id]) }}">Write Review</a> --}}
     <div class="section_category">
         <h3>Shop By Category</h3>
 

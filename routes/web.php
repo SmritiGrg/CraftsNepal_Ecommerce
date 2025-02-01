@@ -43,8 +43,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('userproduct', customerProductController::class);
     Route::resource('userorder', customerOrderController::class);
 
-    Route::get('product-reviews/create/{productId}', [ProductReviewController::class, 'create'])->name('product-reviews.create');
+    Route::get('product-reviews/create/{id}', [ProductReviewController::class, 'create'])->name('product-reviews.create');
     Route::post('product-reviews', [ProductReviewController::class, 'store'])->name('product-reviews.store');
+
+    // Route::resource('/productReview', ProductReviewController::class);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

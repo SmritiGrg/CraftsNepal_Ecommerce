@@ -5,7 +5,7 @@
                 <div class="footer-menu footer-menu-001">
                     <div class="footer-intro mb-4">
                         <a href="index.html">
-                            <img src="assets/img/Logo_Crafts-removebg.png" alt="logo" width="150px", height="100px">
+                            <img src="{{asset('assets/img/Logo_Crafts-removebg.png')}}" alt="logo" width="150px", height="100px">
                         </a>
                     </div>
                     <p style="color: #8F8F8F; letter-spacing: 1px;">Crafts Nepal is a marketplace powered by a
@@ -71,7 +71,7 @@
                 <div class="col-md-6 d-flex flex-wrap">
                     <div class="payment-option">
                         <span style="color: #8F8F8F">Payment Option:</span>
-                        <img src="assets/img/Naya_Khalti_Logo.png" alt="card" width="50px", height="50px">
+                        <img src="{{asset('assets/img/Naya_Khalti_Logo.png')}}" alt="card" width="50px", height="50px">
                     </div>
                 </div>
                 <div class="col-md-6 text-end">
