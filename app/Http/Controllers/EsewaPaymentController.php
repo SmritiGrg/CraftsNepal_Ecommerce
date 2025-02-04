@@ -22,17 +22,17 @@ class EsewaPaymentController extends Controller
         }
         // dd($sum);
         if ($sum > 0) {
-            
+
             $esewa = new Esewa();
-            
+
             $esewa->config(
-                route('esewa.check'), 
-                route('esewa.check'), 
-                $sum,                 
-                'EPAYTEST'  
-                          
+                route('esewa.check'),
+                route('esewa.check'),
+                $sum,
+                'EPAYTEST'
+
             );
-           
+
             $esewa->init();
         }
     }
@@ -41,7 +41,7 @@ class EsewaPaymentController extends Controller
     {
         $esewa = new Esewa();
         $data =  $esewa->decode();
-       
+
         if ($data) {
             if ($data["status"] === 'COMPLETE') {
                 $carts = Cart::query()->where('user_id', '=', Auth::id())->get();
@@ -61,11 +61,10 @@ class EsewaPaymentController extends Controller
                         'transaction_code' => $data['transaction_code'],
                         'amount' => $cart->food->price,
                         'quantity' => $cart->quantity,
-                        'food_id' => $cart->food_id,
+                        'product_id' => $cart->product_id,
                     ]);
                     $cart->delete();
                 }
-                $settings = SiteConfig::all();
                 $id = Auth()->id();
 
                 $transaction_code = $data['transaction_code'];

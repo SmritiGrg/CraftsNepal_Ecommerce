@@ -65,7 +65,16 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
-                            <p class="card-text text-muted">Rs {{ $product->price }}</p>
+                            <span class="text-warning">
+                                @php
+                                    $averageRating = number_format($product->reviews->avg('rating'), 1, '.', '');
+                                @endphp
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <i class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-secondary' }}"></i>
+                                @endfor
+                                ({{ $averageRating }})
+                            </span>
+                            <p class="card-text text-muted">Rs. {{ $product->price }}</p>
                         </div>
                     </div>
                 </div>

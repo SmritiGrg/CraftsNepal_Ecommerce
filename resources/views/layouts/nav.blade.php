@@ -68,7 +68,7 @@
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
 
-                                        <x-dropdown-link :href="route('logout')"
+                                        <x-dropdown-link :href="route('logout')" 
                                             onclick="event.preventDefault();
                                                             this.closest('form').submit();">
                                             {{ 'Log Out' }}
@@ -96,7 +96,8 @@
                     </ul>
                 </div>
             </div>
-
         </nav>
     </div>
 </nav>
+
+

@@ -37,9 +37,39 @@
             </form>
 
             <!-- Button to Open Review Modal -->
-            <button class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#reviewModal">Write Review</button>
+            @if (!Auth::user() || !$product->reviews->where('user_id', Auth::id())->count())
+                <!-- Button to Open Review Modal -->
+                <button class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#reviewModal">Write Review</button>
+            @endif
         </div>
     </div>
+</div>
+
+<!-- Reviews Section -->
+<div class="mt-5">
+    <h2>Customer Reviews ({{ $product->reviews->count() }})</h2>
+    
+    @if ($product->reviews->count() > 0)
+        @foreach ($product->reviews as $review)
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <img src="{{ asset('uploads/' . $review->user->image) }}" alt="Profile" class="rounded-circle" width="40" height="40">
+                        <strong>{{ $review->user->first_name }}</strong>
+                        <span class="text-muted" style="font-size: 14px;"> - {{ $review->created_at->format('d M Y') }}</span>
+                    </h5>
+                    <p>
+                        @for ($i = 1; $i <= 5; $i++)
+                            <i class="fas fa-star {{ $i <= $review->rating ? 'text-warning' : 'text-secondary' }}"></i>
+                        @endfor
+                    </p>
+                    <p class="card-text">{{ $review->comment }}</p>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <p class="text-muted">No reviews yet. Be the first to review this product!</p>
+    @endif
 </div>
 
 <!-- Review Modal -->
