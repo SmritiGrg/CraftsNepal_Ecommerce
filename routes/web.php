@@ -5,6 +5,7 @@ use App\Http\Controllers\adminOrderController;
 use App\Http\Controllers\cartcontroller;
 use App\Http\Controllers\customerProductController;
 use App\Http\Controllers\customerOrderController;
+use App\Http\Controllers\EsewaPaymentController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductCategoryController;
@@ -46,7 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('product-reviews/create/{id}', [ProductReviewController::class, 'create'])->name('product-reviews.create');
     Route::post('product-reviews', [ProductReviewController::class, 'store'])->name('product-reviews.store');
 
-    // Route::resource('/productReview', ProductReviewController::class);
+    Route::post('esewa/pay', [EsewaPaymentController::class, 'pay'])->name('esewa.pay');
+Route::get('esewa/check', [EsewaPaymentController::class, 'check'])->name('esewa.check');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
