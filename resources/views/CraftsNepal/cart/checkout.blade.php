@@ -28,7 +28,12 @@
             <h5 class="text-end">Total: RS{{ $total }}</h5>
         </div>
     </div>
-
+    <form action="{{ route('esewa.pay') }}" method="post">
+        @csrf
+        <button type="submit" class="btn btn-primary">
+            Pay
+        </button>
+    </form>
     <form action="{{ route('order.place') }}" method="POST" class="mt-4">
         @csrf
         <div class="mb-3">
