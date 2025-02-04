@@ -28,19 +28,14 @@
             <h5 class="text-end">Total: RS{{ $total }}</h5>
         </div>
     </div>
-    <form action="{{ route('esewa.pay') }}" method="post">
-        @csrf
-        <button type="submit" class="btn btn-primary">
-            Pay
-        </button>
-    </form>
-    <form action="{{ route('order.place') }}" method="POST" class="mt-4">
+    <form action="{{ route('esewa.pay') }}" method="post" class="mt-3">
         @csrf
         <div class="mb-3">
             <label for="order_detail" class="form-label">Delivery Order Details</label>
             <textarea name="order_detail" id="order_detail" class="form-control" rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-success w-100">Place Order</button>
+        <button type="submit" class="btn btn-success w-100">Pay</button>
     </form>
+    
     
 @endsection
