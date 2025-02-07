@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('content')
+@section('container')
     <div class="container mt-5">
         <div class="alert alert-success">
             <h2>Payment Successful!</h2>
@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->transaction_code }}</td>
-                        <td>NPR {{ number_format($data->total_amount, 2) }}</td>
+                        <td>NPR {{ number_format($data->amount, 2) }}</td>
                         <td>{{ $data->created_at->format('Y-m-d H:i:s') }}</td>
                     </tr>
                 @endforeach
@@ -42,7 +42,7 @@
             document.body.innerHTML = printContents;
             window.print();
             document.body.innerHTML = originalContents;
-            location.reload(); // Reload to restore the page after printing
+            location.reload(); 
         }
     </script>
 @endsection

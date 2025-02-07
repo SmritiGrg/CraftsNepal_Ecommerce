@@ -46,20 +46,22 @@ class EsewaPaymentController extends Controller
        
         if ($data) {
             if ($data["status"] === 'COMPLETE') {
+               
                 $carts = Cart::query()->where('user_id', '=', Auth::id())->get();
+              //  dd($carts);
                 $msg = 'Payment succesful';
                 foreach ($carts as $cart) {
                     $order = Order::query()->create([
                         'user_id' => Auth::id(),
                         'product_id' => $cart->product_id,
-                        'order_details' => $request->order_detail,
+                        // 'order_details' => $request->order_detail,
                         'order_quantity' => $cart->quantity,
                         'order_date' => now(),
                         
                         'total_price' => $data['total_amount'],
                         'order_status' => 'ordered'
                     ]);
-                    foreach ($cart as $item) {
+                    foreach ($carts as $item) {
 
                         OrderItem::create([
                             'order_id' => $order->id,
@@ -68,7 +70,7 @@ class EsewaPaymentController extends Controller
                             'price' => $item->price,
                         ]);
                     }
-
+                //    dd($data['transaction_code']);
                     Payment::query()->create([
                         'user_id' => Auth::id(),
                         'transaction_code' => $data['transaction_code'],
@@ -76,7 +78,9 @@ class EsewaPaymentController extends Controller
                         'quantity' => $cart->quantity,
                         'product_id' => $cart->product_id,
                     ]);
+                    // dd($data['transaction_code']);
                     $cart->delete();
+                    
                 }
                 
                 $id = Auth()->id();
@@ -86,10 +90,16 @@ class EsewaPaymentController extends Controller
                 $totalAmount = Payment::query()
                     ->where('transaction_code', '=', $transaction_code)
                     ->first() // Retrieve the first matching record
-                    ->total_amount;
-                return view('CraftsNepal.order.payment-success', compact('datas', 'totalAmount'));
+                    ->amount;
+                return view('CraftsNepal.payment.payment-success', compact('datas', 'totalAmount'));
             }
         }
         return redirect()->route('payment-failed')->with('error', 'Ordered failed');
     }
+public function paymentFailed(Request $request){
+    $errorMessage = $request->session()->get('error_message', 'Payment failed due to an unknown error.');
+
+    return view('CraftsNepal.payment.payment-failed', compact('errorMessage'));
+}
+
 }

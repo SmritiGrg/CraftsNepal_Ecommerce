@@ -75,16 +75,23 @@ class cartcontroller extends Controller
     }
     public function checkout()
     {
-        $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
-    
-        $total = $cartItems->reduce(function ($carry, $item) {
-            return $carry + ($item->product->price * $item->quantity);
-        }, 0);
-    
-        return view('CraftsNepal.cart.checkout', compact('cartItems', 'total'));
+        // Fetch cart items with product details
+    $cartItems = Cart::with('product:id,price') // Select only necessary fields
+    ->where('user_id', auth()->id())
+    ->get();
+
+// Calculate total price with additional 50
+$total = $this->calculateTotal($cartItems) + 50; 
+
+return view('CraftsNepal.cart.checkout', compact('cartItems', 'total'));
     }
+    private function calculateTotal($cartItems)
+{
+    return $cartItems->reduce(function ($carry, $item) {
+        return $carry + (optional($item->product)->price ?? 0) * $item->quantity;
+    }, 0);
     
-    
+}
     public function placeOrder(Request $request)
 {
     $cartItems = Cart::where('user_id', auth()->id())->get();
@@ -114,7 +121,5 @@ class cartcontroller extends Controller
     Cart::where('user_id', auth()->id())->delete();
 
     return redirect()->route('cart.page')->with('success', 'Order placed successfully!');
-}
-
-    
+}    
 }

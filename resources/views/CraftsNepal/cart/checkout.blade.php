@@ -29,11 +29,7 @@
         </div>
     </div>
     <form action="{{ route('esewa.pay') }}" method="post" class="mt-3">
-        @csrf
-        <div class="mb-3">
-            <label for="order_detail" class="form-label">Delivery Order Details</label>
-            <textarea name="order_detail" id="order_detail" class="form-control" rows="3" required></textarea>
-        </div>
+        
         <button type="submit" class="btn btn-success w-100">Pay</button>
     </form>
     

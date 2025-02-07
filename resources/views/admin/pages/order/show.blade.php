@@ -11,7 +11,7 @@
             <!-- Order Header -->
             <div class="card-header bg-light">
                 <h5 class="mb-0">Order {{ $order->id }} - {{ $order->order_status }}</h5>
-                <p class="text-muted">Placed on: {{ $order->order_date }} | Customer: {{ $order->user->first_name ?? 'Unknown' }}</p>
+                <p class="text-muted">Placed on: {{ $order->order_date }} | Customer: {{ $order->user->first_name ?? 'Unknown' }} {{ $order->user->last_name ?? 'Unknown' }}</p>
             </div>
 
             <!-- Order Items -->
