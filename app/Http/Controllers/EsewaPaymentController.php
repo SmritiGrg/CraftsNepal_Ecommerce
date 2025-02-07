@@ -16,7 +16,7 @@ class EsewaPaymentController extends Controller
 {
     public function pay(Request $request)
     {
-   $transaction_id = uniqid();
+$transaction_id = uniqid();
         $carts = Cart::query()->where('user_id', '=', Auth::id())->get();
         $sum = 0;
         foreach ($carts as $cart) {
@@ -32,9 +32,8 @@ class EsewaPaymentController extends Controller
                 route('esewa.check'), 
                 $sum,                 
                 $transaction_id
-                          
+                        
             );
-           
             $esewa->init();
         }
     }
@@ -43,7 +42,7 @@ class EsewaPaymentController extends Controller
     {
         $esewa = new Esewa();
         $data =  $esewa->decode();
-       
+
         if ($data) {
             if ($data["status"] === 'COMPLETE') {
                
