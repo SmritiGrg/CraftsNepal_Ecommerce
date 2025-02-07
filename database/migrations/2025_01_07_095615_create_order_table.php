@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->id();
             $table->string('total_price');
-            $table->string('order_details');
+            // $table->string('order_details');
             $table->string('order_status');
             $table->string('order_date');
             $table->foreignId('user_id')->nullable();

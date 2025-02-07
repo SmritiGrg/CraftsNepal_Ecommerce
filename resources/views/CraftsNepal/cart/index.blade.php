@@ -107,7 +107,14 @@
                     <p>Total Cost</p>
                     <p>RS {{ number_format($totalCost, 2) }}</p>
                 </div>
-                <a href="{{ route('cart.checkout') }}" class="btn btn-primary w-100">Checkout</a>
+                <form action="{{ route('cart.checkout') }}" method="post" class="mt-3">
+                    @csrf
+                <div class="mb-3">
+                    <label for="order_detail" class="form-label">Delivery Order Details</label>
+                    <textarea name="order_detail" id="order_detail" class="form-control" rows="3" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-success w-100">Checkout</button>
             </div>
         </div>
     </div>

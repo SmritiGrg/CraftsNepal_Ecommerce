@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/cart/remove/{id}', [cartController::class, 'remove'])->name('cart.remove');
 
-    Route::get('/checkout', [cartController::class, 'checkout'])->name('cart.checkout');
+    Route::post('/checkout', [cartController::class, 'checkout'])->name('cart.checkout');
     Route::post('/order/place', [cartController::class, 'placeOrder'])->name('order.place');
     Route::resource('userproduct', customerProductController::class);
     Route::resource('userorder', customerOrderController::class);
@@ -48,7 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::post('product-reviews', [ProductReviewController::class, 'store'])->name('product-reviews.store');
 
     Route::post('esewa/pay', [EsewaPaymentController::class, 'pay'])->name('esewa.pay');
-Route::get('esewa/check', [EsewaPaymentController::class, 'check'])->name('esewa.check');
+    Route::get('esewa/check', [EsewaPaymentController::class, 'check'])->name('esewa.check');
+    Route::get('/payment-failed', [EsewaPaymentController::class, 'paymentFailed'])->name('payment-failed');
+
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
