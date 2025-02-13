@@ -7,21 +7,47 @@
     <h3>Product Description Page </h3>
   
     <div class="product_card">
-      <img src="asset/Images/pexels-Accessories.jpg" alt="Product Image" height="500px" width="450px">
+      <img src="{{ asset('uploads/' . $product->image)}}" alt="{{ $product->name }}" class="img-fluid">
       
       <div class="product_details">
-        <h4>Pear Gold Ring</h4>
-        <p>The Pear Gold Ring is a timeless symbol of elegance, designed to captivate with its stunning pear-shaped gemstone set on a sleek, high-quality 18k gold band. Its exquisite craftsmanship blends modern sophistication with classic charm, making it perfect for engagements, anniversaries, or as a statement accessory for any occasion.</p>
+        <h4>{{ $product->name }}</h4>
+        <p>{{ $product->description }}</p>
         
         
         <div class="product_price">
           <span>Price:</span>
-          <strong>$99.99</strong>
+          <strong>Rs {{ $product->price }}</strong>
         </div>
-        
+
+        <div class="product_stock">
+          <span>Stock:</span>
+          <strong>
+            @if ($product->stock > 0)
+              {{ $product->stock }} available
+            @else
+                Out of stock
+            @endif
+          </strong>
+        </div>
+
+      
         <div class="product_actions">
-          <button class="buy_now">Buy Now</button>
-          <button class="add_to_cart">Add to Cart</button>
+          <form method="POST" action="{{ route('cart.add') }}">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <input type="hidden" name="name" value="{{ $product->name }}">
+            <input type="hidden" name="price" value="{{ $product->price }}">
+            <input type="hidden" name="quantity" value="1">
+            <button class="add_to_cart_btn" {{ $product->stock > 0 ? '' : 'disabled' }}>Add to Cart</button>
+          </form>
+
+          <!-- Button to Open Review Modal -->
+          @if (!Auth::user() || !$product->reviews->where('user_id', Auth::id())->count())
+          <!-- Button to Open Review Modal -->
+          <button class="write_review_btn" data-bs-toggle="modal" data-bs-target="#reviewModal">Write Review</button>
+          @endif
+
+          {{-- <button class="add_to_cart">Add to Cart</button> --}}
         </div>
   
       </div>

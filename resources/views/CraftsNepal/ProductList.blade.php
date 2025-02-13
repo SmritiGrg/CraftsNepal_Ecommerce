@@ -46,7 +46,11 @@
         </div>
 
         {{-- Product Cards --}}
-        <h1 class="text-center mb-4">Our Products</h1>
+        <div class="heading">
+            <span>Products</span>
+            <h1>Our Best Products</h1>
+        </div>
+        
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
             @forelse ($products as $product)
                 <div class="col">

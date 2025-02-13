@@ -6,7 +6,11 @@
         {{-- <div class="text2">Where Tradition Meets Modern Design</div> --}}
     </div>
     <div class="section_category">
-        <h3>Shop By Category</h3>
+        {{-- <h3>Shop By Category</h3> --}}
+        <div class="heading">
+            <span>Category</span>
+            <h1>Shop By Category</h1>
+        </div>
 
         <div class="cards">
 
