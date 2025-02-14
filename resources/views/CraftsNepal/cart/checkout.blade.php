@@ -24,12 +24,16 @@
                         <span>Rs {{ $item->product->price * $item->quantity }}</span>
                     </li>
                 @endforeach
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Delivery Charged
+                    <span>Rs 50</span>
+                </li>
             </ul>
             <h5 class="text-end">Total: RS{{ $total }}</h5>
         </div>
     </div>
     <form action="{{ route('esewa.pay') }}" method="post" class="mt-3">
-        
+        @csrf
         <button type="submit" class="btn btn-success w-100">Pay</button>
     </form>
     

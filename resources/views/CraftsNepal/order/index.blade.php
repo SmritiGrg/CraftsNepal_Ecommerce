@@ -10,7 +10,7 @@
             <!-- Order Header -->
             <div class="card-header bg-white d-flex justify-content-between align-items-center">
                 <div>
-                    <h5 class="mb-0">Order #{{ $order->id }}</h5>
+                    <h5 class="mb-0">Order #{{ $loop->iteration  }}</h5>
                     <small class="text-muted">{{ $order->order_date }}</small>
                 </div>
                 <span class="badge 

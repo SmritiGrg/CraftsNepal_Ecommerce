@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
@@ -21,13 +22,25 @@ class cartcontroller extends Controller
         $cartItem = Cart::where('user_id', auth()->id())
             ->where('product_id', $validatedData['id'])
             ->first();
+            $product = Product::findOrFail($validatedData['id']);
      
         if ($cartItem) {
             // Update quantity if item already exists in the cart
+            
+            
+            $newQuantity = $cartItem->quantity + ($validatedData['quantity'] ?? 1);
+            if ($newQuantity > $product->stock) {
+                return redirect()->back()->with('error', 'Cannot exceed available stock.');
+            }
             $cartItem->increment('quantity', $validatedData['quantity'] ?? 1);
         } else {
+          
+
+            if (($validatedData['quantity'] ?? 1) > $product->stock) {
+                return redirect()->back()->with('error', 'Cannot exceed available stock.');
+            }
             // Add new item to the cart
-         $cart=   Cart::create([
+          Cart::create([
                 'product_id' => $validatedData['id'],
                 'user_id' => auth()->id(),
                 'name' => $validatedData['name'],
@@ -58,6 +71,14 @@ class cartcontroller extends Controller
     if ($cartItem->user_id !== auth()->id()) {
         return redirect()->route('cart.page')->with('error', 'Unauthorized action.');
     }
+
+    // Retrieve the product associated with the cart item
+    $product = product::findOrFail($cartItem->product_id);
+
+    // Check if the requested quantity is more than available stock
+    if ($request->quantity > $product->stock) {
+        return redirect()->route('cart.page')->with('error', 'Cannot exceed available stock.');
+    }
     
     // Update the quantity
     $cartItem->update([
@@ -76,7 +97,7 @@ class cartcontroller extends Controller
     public function checkout()
     {
         // Fetch cart items with product details
-    $cartItems = Cart::with('product:id,price') // Select only necessary fields
+    $cartItems = Cart::with('product:id,price,name') // Select only necessary fields
     ->where('user_id', auth()->id())
     ->get();
 
