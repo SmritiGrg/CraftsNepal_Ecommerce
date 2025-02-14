@@ -38,9 +38,9 @@
             <h1>Our Best Products</h1>
         </div>
         
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+        <div class="row g-4 mb-4">
             @foreach ($products as $product)
-                <div class="col">
+            <div class="col-md-6 col-lg-4  col-sm-1 g-4 mb-4">
                     <div class="card product-card">
                         <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                         <div class="hover-buttons">

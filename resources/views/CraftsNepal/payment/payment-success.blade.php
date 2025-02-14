@@ -15,6 +15,9 @@
                 <tr>
                     <th>Payment ID</th>
                     <th>Transaction Code</th>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
                     <th>Amount</th>
                     <th>Date</th>
                 </tr>
@@ -24,6 +27,12 @@
                     <tr>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->transaction_code }}</td>
+                        <td>
+                            <img src="{{ asset('uploads/' . $data->product->image) }}" alt="{{ $data->product_name }}" width="80" height="80">
+                        </td>
+                        <td>{{ $data->product->name ?? 'N/A' }}</td>
+                        {{-- <td>{{ $data->product->description ?? 'No description available' }}</td> --}}
+                        <td>{{ $data->quantity }}</td>
                         <td>NPR {{ number_format($data->amount, 2) }}</td>
                         <td>{{ $data->created_at->format('Y-m-d H:i:s') }}</td>
                     </tr>

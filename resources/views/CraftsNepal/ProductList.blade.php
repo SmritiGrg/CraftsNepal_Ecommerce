@@ -46,13 +46,10 @@
         </div>
 
         {{-- Product Cards --}}
-        <div class="heading">
-            <span>Products</span>
-        </div>
-        
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+        <h1 class="text-center mb-4">Our Products</h1>
+        <div class="row ">
             @forelse ($products as $product)
-                <div class="col">
+                <div class="col-md-6 col-lg-4  col-sm-1 g-4 mb-4">
                     <div class="card product-card">
                         <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                         <div class="hover-buttons">
@@ -85,5 +82,6 @@
                 <p class="text-center">No products found.</p>
             @endforelse
         </div>
+    </div> 
     </div>
 @endsection
