@@ -6,55 +6,53 @@
     {{-- <div class="heading">
         <h1>Product Details</h1>
     </div> --}}
-  
     <div class="detail_card">
-      <img src="{{ asset('uploads/' . $product->image)}}" alt="{{ $product->name }}" >
-    
-      
-      <div class="product_details">
-        <h4>{{ $product->name }}</h4>
-        <p>{{ $product->description }}</p>
-        
-        
-        <div class="product_price">
-          <strong>Price:  </strong>
-          <span> Rs {{ $product->price }}</span>
-        </div>
+        <img src="{{ asset('uploads/' . $product->image)}}" alt="{{ $product->name }}" >
 
-        <div class="product_stock">
-          <strong>Available:</strong>
-          <span>
-            @if ($product->stock > 0)
-              {{ $product->stock }} left
-            @else
-                Out of stock
+        <div class="product_details">
+            <h4>{{ $product->name }}</h4>
+            <p>{{ $product->description }}</p>
+            
+            
+            <div class="product_price">
+            <strong>Price:  </strong>
+            <span> Rs {{ $product->price }}</span>
+            </div>
+
+            <div class="product_stock">
+            <strong>Available:</strong>
+            <span>
+                @if ($product->stock > 0)
+                {{ $product->stock }} left
+                @else
+                    Out of stock
+                @endif
+            </span>
+            </div>
+
+        
+            <div class="product_actions">
+            <form method="POST" action="{{ route('cart.add') }}">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <input type="hidden" name="name" value="{{ $product->name }}">
+                <input type="hidden" name="price" value="{{ $product->price }}">
+                <input type="hidden" name="quantity" value="1">
+                <button class="add_to_cart_btn" {{ $product->stock > 0 ? '' : 'disabled' }}>Add to Cart</button>
+            </form>
+
+            
+            @if (!Auth::user() || !$product->reviews->where('user_id', Auth::id())->count())
+            <!-- Button to Open Review Modal -->
+            <button class="write_review_btn" data-bs-toggle="modal" data-bs-target="#reviewModal">Write Review</button>
             @endif
-          </span>
-        </div>
 
-      
-        <div class="product_actions">
-          <form method="POST" action="{{ route('cart.add') }}">
-            @csrf
-            <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <input type="hidden" name="name" value="{{ $product->name }}">
-            <input type="hidden" name="price" value="{{ $product->price }}">
-            <input type="hidden" name="quantity" value="1">
-            <button class="add_to_cart_btn" {{ $product->stock > 0 ? '' : 'disabled' }}>Add to Cart</button>
-          </form>
-
-         
-          @if (!Auth::user() || !$product->reviews->where('user_id', Auth::id())->count())
-          <!-- Button to Open Review Modal -->
-          <button class="write_review_btn" data-bs-toggle="modal" data-bs-target="#reviewModal">Write Review</button>
-          @endif
-
+        
+            </div>
     
         </div>
-  
-      </div>
     </div>
-  </section>
+</section>
 
 
 <!-- Reviews Section -->

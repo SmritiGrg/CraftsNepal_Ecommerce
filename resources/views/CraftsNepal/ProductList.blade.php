@@ -48,7 +48,6 @@
         {{-- Product Cards --}}
         <div class="heading">
             <span>Products</span>
-            <h1>Our Best Products</h1>
         </div>
         
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">

@@ -58,80 +58,19 @@
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text text-muted">Rs {{ $product->price }}</p>
                             <div class="star-rating">
-                                {{-- @for ($i = 1; $i <= 5; $i++)
-                                    <i class="{{ $i <= $product->rating ? 'fas' : 'far' }} fa-star"></i>
-                                @endfor --}}
+                                @php
+                                    $averageRating = number_format($product->reviews->avg('rating'), 1, '.', '');
+                                @endphp
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <i class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-secondary' }}"></i>
+                                @endfor
+                                ({{ $averageRating }})
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        {{-- <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
-
-            <div class="col">
-                <div class="card product-card">
-                    <img src="{{ asset('assets/img/jacket_green.jpg') }}" class="card-img-top" alt="Product 1">
-                    <div class="hover-buttons">
-                        <button class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
-                        <button class="btn-outline-custom">Details</button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">jacket with green and Black</h5>
-                        <p class="card-text text-muted">Rs 500</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card product-card">
-                    <img src="{{ asset('assets/img/dio.jpg') }}" class="card-img-top" alt="Product 2">
-                    <div class="hover-buttons">
-                        <button class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
-                        <button class="btn-outline-custom">Details</button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">clay lamps (diyas)</h5>
-                        <p class="card-text text-muted">Rs 20</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card product-card">
-                    <img src="{{ asset('assets/img/craft.jpg') }}" class="card-img-top" alt="Product 3">
-                    <div class="hover-buttons">
-                        <button class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
-                        <button class="btn-outline-custom">Details</button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">pottery-making</h5>
-                        <p class="card-text text-muted">Rs 100</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star "></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 
     {{-- ----- START PRODUCT REVIEW SECTION ----- --}}
