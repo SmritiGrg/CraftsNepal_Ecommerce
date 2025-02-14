@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
 
             {{-- Filtering --}}
-            {{-- <div class="dropdown">
+            <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-funnel"></i> Filter
@@ -14,9 +14,9 @@
                     <li><a class="dropdown-item" href="?category=Art and Craft">Art & Craft</a></li>
                     <li><a class="dropdown-item" href="?category=Accessories">Accessories</a></li>
                 </ul>
-            </div> --}}
+            </div> 
 
-            <div class="dropdown">
+            {{-- <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-funnel"></i> Filter
@@ -28,7 +28,7 @@
                         </li>
                     @endforeach
                 </ul>
-            </div>
+            </div> --}}
             
 
             {{-- Sorting --}}
