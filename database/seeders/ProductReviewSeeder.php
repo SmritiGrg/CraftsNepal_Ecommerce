@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\product;
+use App\Models\ProductReview;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ProductSeeder extends Seeder
+class ProductReviewSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        product::factory()->count(20)->create();
+        ProductReview::factory()->count(15)->create();
     }
 }

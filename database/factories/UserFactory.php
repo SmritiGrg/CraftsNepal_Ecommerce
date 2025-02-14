@@ -24,14 +24,25 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'phone_number' => $this->faker->phoneNumber(),
+            'city' => $this->faker->city(),
+            'address' => $this->faker->address(),
+            'image' => $this->faker->imageUrl(), 
+            'email' => $this->faker->unique()->safeEmail(),
+            'role' => $this->assignRole(),// Example roles, change if needed
             'password' => static::$password ??= Hash::make('password'),
+            'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
     }
 
+    private function assignRole()
+    {
+        // Return one of the roles except 'admin'
+        return $this->faker->randomElement(['customer']);
+    }
     /**
      * Indicate that the model's email address should be unverified.
      */

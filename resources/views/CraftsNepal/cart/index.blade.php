@@ -71,8 +71,8 @@
                                 </td>
                                 
                                 
-                                <td>Rs {{ number_format($item->product->price, 2) }}</td>
-                                <td>RS {{ number_format($itemTotal, 2) }}</td>
+                                <td>Rs. {{ number_format($item->product->price, 2) }}</td>
+                                <td>Rs. {{ number_format($itemTotal, 2) }}</td>
                                 <td>
                                     <form action="{{ route('cart.remove', $item->id) }}" method="POST">
                                         @csrf
