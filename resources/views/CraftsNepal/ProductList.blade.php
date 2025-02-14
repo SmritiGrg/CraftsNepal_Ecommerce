@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
 
             {{-- Filtering --}}
-            {{-- <div class="dropdown">
+            <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-funnel"></i> Filter
@@ -14,9 +14,9 @@
                     <li><a class="dropdown-item" href="?category=Art and Craft">Art & Craft</a></li>
                     <li><a class="dropdown-item" href="?category=Accessories">Accessories</a></li>
                 </ul>
-            </div> --}}
+            </div> 
 
-            <div class="dropdown">
+            {{-- <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-funnel"></i> Filter
@@ -28,7 +28,7 @@
                         </li>
                     @endforeach
                 </ul>
-            </div>
+            </div> --}}
             
 
             {{-- Sorting --}}
@@ -51,6 +51,12 @@
             <h1>Our Best Products</h1>
         </div>
         
+        {{-- row-cols-1: On small screens,there will be 1 column.
+             row-cols-md-2: On medium screens,there will be 2 columns.
+             row-cols-lg-3: On large screens,there will be 3 columns
+             g-4: add gap
+             mb-4 adds margin-bottom.
+         --}}
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
             @forelse ($products as $product)
                 <div class="col">

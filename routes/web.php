@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/checkout', [cartController::class, 'checkout'])->name('cart.checkout');
     Route::post('/order/place', [cartController::class, 'placeOrder'])->name('order.place');
-    Route::resource('userproduct', customerProductController::class);
+    // Route::resource('userproduct', customerProductController::class);
     Route::resource('userorder', customerOrderController::class);
 
     Route::get('product-reviews/create/{id}', [ProductReviewController::class, 'create'])->name('product-reviews.create');

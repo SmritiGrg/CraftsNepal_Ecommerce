@@ -19,7 +19,7 @@
             $grandTotal = 0; // Initialize grand total
         @endphp
         <div class="col-md-8">
-            <h5 class="mb-3">Product Details</h5>
+            <h5 class="mb-3">ITEMS IN CART</h5>
             @if($cartItems->isEmpty())
                 <div class="text-center">
                     <p>Your cart is empty!</p>
@@ -54,15 +54,23 @@
                                         <h6>{{ $item->product->name }}</h6>
                                     </div>
                                 </td>
+                                
                                 <td>
-                                    <form action="{{ route('cart.update', $item->id) }}" method="POST" class="d-flex align-items-center">
+                                    <form action="{{ $item->quantity > 1 ? route('cart.update', $item->id) : route('cart.remove', $item->id) }}" method="POST" class="d-flex align-items-center">
                                         @csrf
-                                        @method('PATCH')
-                                        <button type="submit" name="quantity" value="{{ $item->quantity - 1 }}" class="btn btn-light btn-sm">-</button>
+                                        @if ($item->quantity > 1)
+                                            @method('PATCH')
+                                            <button type="submit" name="quantity" value="{{ $item->quantity - 1 }}" class="btn btn-light btn-sm">-</button>
+                                        @else
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-light btn-sm">-</button>
+                                        @endif
                                         <input type="number" value="{{ $item->quantity }}" class="form-control text-center mx-1" style="width: 50px;" readonly>
                                         <button type="submit" name="quantity" value="{{ $item->quantity + 1 }}" class="btn btn-light btn-sm">+</button>
                                     </form>
                                 </td>
+                                
+                                
                                 <td>Rs {{ number_format($item->product->price, 2) }}</td>
                                 <td>RS {{ number_format($itemTotal, 2) }}</td>
                                 <td>
@@ -90,16 +98,20 @@
         {{-- Order Summary Section --}}
         <div class="col-md-4">
             <div class="card p-4">
-                <h5 class="card-title">Order Summary</h5>
+                <h5 class="card-title mb-3">Order Summary</h5>
                 <div class="d-flex justify-content-between">
-                    <p>Items</p>
+                    <p>Total Item</p>
                     <p>{{ $cartItems->count() }}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>Total Price</p>
+                    <p>{{$grandTotal}}</p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <p>Delivery charge</p>
                     <p>Rs 50.00</p>
                 </div>
-                <hr>
+                <hr class="mt-0">
                 @php
                     $totalCost = $grandTotal + 50; // Add delivery charge to grand total
                 @endphp
@@ -107,10 +119,10 @@
                     <p>Total Cost</p>
                     <p>RS {{ number_format($totalCost, 2) }}</p>
                 </div>
-                <form action="{{ route('cart.checkout') }}" method="post" class="mt-3">
+                <form action="{{ route('cart.checkout') }}" method="post" class="mt-2">
                     @csrf
                 <div class="mb-3">
-                    <label for="order_detail" class="form-label">Delivery Order Details</label>
+                    <label for="order_detail" class="form-label">Address</label>
                     <textarea name="order_detail" id="order_detail" class="form-control" rows="3" required></textarea>
                 </div>
                 
