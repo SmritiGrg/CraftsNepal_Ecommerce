@@ -39,9 +39,18 @@
                 @endforeach
             </tbody>
         </table>
-        <button onclick="printReceipt()" class="btn btn-success">Print Receipt</button>
-
-        <a href="{{ url('/') }}" class="btn btn-primary">Back to Home</a>
+        <div class="d-flex justify-content-center gap-3 mt-3">
+            <!-- Print Button -->
+            <button onclick="window.print()" class="btn btn-warning text-dark fw-bold shadow">
+                <i class="fas fa-print"></i> Print
+            </button>
+        
+            <!-- Back to Home Button -->
+            <a href="{{ url('/') }}" class="btn btn-success fw-bold shadow">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+        
     </div>
     <script>
         function printReceipt() {

@@ -69,10 +69,11 @@ class EsewaPaymentController extends Controller
                         ]);
                     }
                     //    dd($data['transaction_code']);
+                    $amount= str_replace(',', '',$data['total_amount'] );
                     Payment::query()->create([
                         'user_id' => Auth::id(),
                         'transaction_code' => $data['transaction_code'],
-                        'amount' => $cart->$order->total_price,
+                        'amount' => $amount,
                         'quantity' => $cart->quantity,
                         'product_id' => $cart->product_id,
                     ]);

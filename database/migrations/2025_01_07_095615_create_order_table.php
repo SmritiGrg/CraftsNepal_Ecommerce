@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('total_price');
             // $table->string('order_details');
             $table->string('order_status');
+           $table->enum('payment',['Paid','Unpaid']);
             $table->string('order_date');
             $table->foreignId('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

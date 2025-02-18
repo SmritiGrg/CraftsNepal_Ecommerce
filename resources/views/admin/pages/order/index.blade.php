@@ -61,6 +61,7 @@
                         <th>Customer</th>
                         <th>Date</th>
                         <th>Status</th>
+                        <th>Payment</th>
                         <th>Total Amount</th>
                         <th>Actions</th>
                     </tr>
@@ -76,7 +77,11 @@
                                     {{ ucfirst($order->order_status) }}
                                 </span>
                             </td>
-                            <td>Rs {{ number_format($order->total_price, 2) }}</td>
+                            <td><span class="badge {{ $order->payment == 'paid' ? 'bg-warning text-dark' : 'bg-danger' }}">
+                                {{ ucfirst($order->payment) }}
+                            </span>
+                        </td>
+                            <td>Rs {{$order->total_price}}</td>
                             <td>
                                 <a href="{{ route('order.show', $order->id) }}" class="btn btn-info btn-sm">
                                     <i class="fas fa-eye"></i> View
