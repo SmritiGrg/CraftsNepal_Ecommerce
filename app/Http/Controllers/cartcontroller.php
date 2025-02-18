@@ -126,6 +126,7 @@ return view('CraftsNepal.cart.checkout', compact('cartItems', 'total'));
         'total_price' => $cartItems->sum(fn($item) => $item->product->price * $item->quantity),
         'order_details' => $request->order_detail,
         'order_status' => 'Pending',
+        'payment'=>'payed',
         'order_date' => now(),
     ]);
 
