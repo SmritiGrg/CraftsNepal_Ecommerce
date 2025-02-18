@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\SearchController;
 use App\Models\ProductReview;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('userproduct', customerProductController::class);
+
+Route::get('/search', [SearchController::class, 'search'])->name('products.search');
 
 Route::middleware('auth')->group(function () {
     // Route::get('/', function () {

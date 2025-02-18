@@ -1,7 +1,9 @@
 @extends('layouts.main')
 @section('container')
     <div class="image-slider">
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
         <img src="{{ asset('assets/img/side.jpg') }}" id="slide">
+        <button class="next" onclick="nextSlide()">&#10095;</button>
         {{-- <div class="text1">Authentic Nepalese Handicrafts </div> --}}
         {{-- <div class="text2">Where Tradition Meets Modern Design</div> --}}
     </div>
@@ -213,5 +215,25 @@
                 i = 0;
         }
         setInterval(slides, 3000);
+        let currentIndex = 0;
+
+        function showSlide(index) {
+        if (index < 0) {
+            currentIndex = img.length - 1; // Loop to last image
+        } else if (index >= img.length) {
+            currentIndex = 0; // Loop back to first image
+        } else {
+            currentIndex = index;
+        }
+        slide.src = img[currentIndex];
+    }
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
     </script>
 @endsection
