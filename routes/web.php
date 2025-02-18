@@ -13,6 +13,8 @@ use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\UserCartController;
+use App\Http\Controllers\UserController;
 use App\Models\ProductReview;
 use Illuminate\Support\Facades\Route;
 
@@ -53,7 +55,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment-failed', [EsewaPaymentController::class, 'paymentFailed'])->name('payment-failed');
     //revenue
     Route::resource('revenue',RevenueController::class);
-
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
