@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = product::all(); // Assuming you have a Product model
+        $products = product::all();
         return view('CraftsNepal.index', compact('products'));
     }
 }

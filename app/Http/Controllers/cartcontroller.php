@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Models\product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class cartcontroller extends Controller
 {
@@ -23,7 +24,6 @@ class cartcontroller extends Controller
             ->where('product_id', $validatedData['id'])
             ->first();
             $product = Product::findOrFail($validatedData['id']);
-     
         if ($cartItem) {
             // Update quantity if item already exists in the cart
             
@@ -34,13 +34,11 @@ class cartcontroller extends Controller
             }
             $cartItem->increment('quantity', $validatedData['quantity'] ?? 1);
         } else {
-          
-
             if (($validatedData['quantity'] ?? 1) > $product->stock) {
                 return redirect()->back()->with('error', 'Cannot exceed available stock.');
             }
             // Add new item to the cart
-          Cart::create([
+            Cart::create([
                 'product_id' => $validatedData['id'],
                 'user_id' => auth()->id(),
                 'name' => $validatedData['name'],
@@ -59,8 +57,8 @@ class cartcontroller extends Controller
         return view('CraftsNepal.cart.index', compact('cartItems'));
     }
     public function update(Request $request,$id){
-     // Validate that the quantity is a positive integer
-     $request->validate([
+        // Validate that the quantity is a positive integer
+        $request->validate([
         'quantity' => 'required|integer|min:1',
     ]);
     
@@ -94,54 +92,54 @@ class cartcontroller extends Controller
     
         return redirect()->route('cart.page')->with('success', 'Item removed from cart!');
     }
+
     public function checkout()
     {
         // Fetch cart items with product details
-    $cartItems = Cart::with('product:id,price,name') // Select only necessary fields
-    ->where('user_id', auth()->id())
-    ->get();
+        $cartItems = Cart::with('product:id,price,name') // Select only necessary fields
+        ->where('user_id', auth()->id())
+        ->get();
 
-// Calculate total price with additional 50
-$total = $this->calculateTotal($cartItems) + 50; 
+        // Calculate total price with additional 50
+        $total = $this->calculateTotal($cartItems) + 50; 
 
-return view('CraftsNepal.cart.checkout', compact('cartItems', 'total'));
+        return view('CraftsNepal.cart.checkout', compact('cartItems', 'total'));
     }
+
     private function calculateTotal($cartItems)
-{
-    return $cartItems->reduce(function ($carry, $item) {
-        return $carry + (optional($item->product)->price ?? 0) * $item->quantity;
-    }, 0);
-    
-}
-    public function placeOrder(Request $request)
-{
-    $cartItems = Cart::where('user_id', auth()->id())->get();
-
-    if ($cartItems->isEmpty()) {
-        return redirect()->route('cart.page')->with('error', 'Your cart is empty!');
+    {
+        return $cartItems->reduce(function ($carry, $item) {
+            return $carry + (optional($item->product)->price ?? 0) * $item->quantity;
+        }, 0);
+        
     }
-//dd($cartItems);
-    $order = Order::create([
-        'user_id' => auth()->id(),
-        'total_price' => $cartItems->sum(fn($item) => $item->product->price * $item->quantity),
-        'order_details' => $request->order_detail,
-        'order_status' => 'Pending',
-        'payment'=>'payed',
-        'order_date' => now(),
-    ]);
+    public function placeOrder(Request $request){
+        $cartItems = Cart::where('user_id', auth()->id())->get();
 
-    foreach ($cartItems as $item) {
-        OrderItem::create([
-            'order_id' => $order->id,
-            'product_id' => $item->product_id,
-            'order_quantity' => $item->quantity,
-            'price' => $item->price,
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.page')->with('error', 'Your cart is empty!');
+        }
+        //dd($cartItems);
+        $order = Order::create([
+            'user_id' => auth()->id(),
+            'total_price' => $cartItems->sum(fn($item) => $item->product->price * $item->quantity),
+            'order_details' => $request->order_detail,
+            'order_status' => 'Pending',
+            'payment'=>'payed',
+            'order_date' => now(),
         ]);
+
+        foreach ($cartItems as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item->product_id,
+                'order_quantity' => $item->quantity,
+                'price' => $item->price,
+            ]);
+        }
+        
+        Cart::where('user_id', auth()->id())->delete();
+
+        return redirect()->route('cart.page')->with('success', 'Order placed successfully!');
     }
-
-    
-    Cart::where('user_id', auth()->id())->delete();
-
-    return redirect()->route('cart.page')->with('success', 'Order placed successfully!');
-}    
 }
