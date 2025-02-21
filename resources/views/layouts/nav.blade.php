@@ -43,11 +43,11 @@
     
                         {{-- search bar --}}
                         <li class="nav-item mt-3 ml-5 mr-5">
-                            <form class="d-flex">
-                                {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-secondary" type="submit">
+                            <form class="d-flex" action="{{ route('products.search') }}" method="GET">
+                                <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search" required>
+                                <button class="btn btn-outline-success" type="submit">
                                     <i class="bi bi-search"></i>
-                                </button> --}}
+                                </button> 
                                 <div class="input-group">
                                     <div class="form-outline">
                                         <input type="search" id="form1" class="form-control border-end-0 rounded-0 search" placeholder="Search" style="outline: none; border: none;"/>

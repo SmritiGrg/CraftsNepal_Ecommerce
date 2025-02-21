@@ -13,8 +13,7 @@ use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RevenueController;
-use App\Http\Controllers\UserCartController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 use App\Models\ProductReview;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +26,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('userproduct', customerProductController::class);
+
+Route::get('/search', [SearchController::class, 'search'])->name('products.search');
 
 Route::middleware('auth')->group(function () {
     // Route::get('/', function () {
@@ -54,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('esewa/check', [EsewaPaymentController::class, 'check'])->name('esewa.check');
     Route::get('/payment-failed', [EsewaPaymentController::class, 'paymentFailed'])->name('payment-failed');
     //revenue
-    Route::resource('revenue',RevenueController::class);
+    Route::resource('revenue', RevenueController::class);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

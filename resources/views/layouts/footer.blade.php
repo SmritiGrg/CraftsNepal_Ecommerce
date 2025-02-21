@@ -21,10 +21,10 @@
                     <h5 class="widget-title text-uppercase mb-4">Quick Links</h5>
                     <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
                         <li class="menu-item">
-                            <a href="index.html" class="item-anchor">Home</a>
+                            <a href="{{url('/')}}" class="item-anchor">Home</a>
                         </li>
                         <li class="menu-item">
-                            <a href="index.html" class="item-anchor">Product</a>
+                            <a href="{{route('userproduct.index')}}" class="item-anchor">Product</a>
                         </li>
                         <li class="menu-item">
                             <a href="blog.html" class="item-anchor">Blog</a>
@@ -71,7 +71,7 @@
                 <div class="col-md-6 d-flex flex-wrap">
                     <div class="payment-option">
                         <span style="color: #8F8F8F">Payment Option:</span>
-                        <img src="{{asset('assets/img/Naya_Khalti_Logo.png')}}" alt="card" width="50px", height="50px">
+                        <img src="{{asset('assets/img/eSewa_Logo.jpg')}}" alt="card" width="30px", height="30px">
                     </div>
                 </div>
                 <div class="col-md-6 text-end">
