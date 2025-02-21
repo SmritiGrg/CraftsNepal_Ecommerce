@@ -44,15 +44,15 @@
                         {{-- search bar --}}
                         <li class="nav-item mt-3 ml-5 mr-5">
                             <form class="d-flex" action="{{ route('products.search') }}" method="GET">
-                                <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search" required>
+                                {{-- <input class="form-control me-2" type="text" name="query" placeholder="Search" aria-label="Search" required>
                                 <button class="btn btn-outline-success" type="submit">
                                     <i class="bi bi-search"></i>
-                                </button> 
+                                </button>  --}}
                                 <div class="input-group">
                                     <div class="form-outline">
-                                        <input type="search" id="form1" class="form-control border-end-0 rounded-0 search" placeholder="Search" style="outline: none; border: none;"/>
+                                        <input type="text" name="query" id="form1" class="form-control border-end-0 rounded-0 search" placeholder="Search" style="outline: none; border: none;"/>
                                     </div>
-                                    <button type="button" class="btn" id="search-btn">
+                                    <button type="submit" class="btn" id="search-btn">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
