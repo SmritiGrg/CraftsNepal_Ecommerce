@@ -56,20 +56,19 @@
                                 </td>
                                 
                                 <td>
-                                    <form action="{{ $item->quantity > 1 ? route('cart.update', $item->id) : route('cart.remove', $item->id) }}" method="POST" class="d-flex align-items-center">
+                                    <form action="{{ route('cart.update', $item->id) }}" method="POST" class="d-flex align-items-center">
                                         @csrf
-                                        @if ($item->quantity > 1)
-                                            @method('PATCH')
-                                            <button type="submit" name="quantity" value="{{ $item->quantity - 1 }}" class="btn btn-light btn-sm">-</button>
-                                        @else
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-light btn-sm">-</button>
-                                        @endif
+                                        @method('PATCH')
+                                    
+                                        {{-- Decrease Quantity Button --}}
+                                        <button type="submit" name="quantity" value="{{ $item->quantity - 1 }}" class="btn btn-light btn-sm">-</button>
+                                    
                                         <input type="number" value="{{ $item->quantity }}" class="form-control text-center mx-1" style="width: 50px;" readonly>
+                                    
+                                        {{-- Increase Quantity Button --}}
                                         <button type="submit" name="quantity" value="{{ $item->quantity + 1 }}" class="btn btn-light btn-sm">+</button>
                                     </form>
                                 </td>
-                                
                                 
                                 <td>Rs. {{ number_format($item->product->price, 2) }}</td>
                                 <td>Rs. {{ number_format($itemTotal, 2) }}</td>

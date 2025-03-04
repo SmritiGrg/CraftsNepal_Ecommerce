@@ -15,22 +15,18 @@
         </div>
 
         <div class="cards">
-
-            <div class="card">
-                <img src="{{ asset('assets/img/pexels-clothing.jpg') }}" alt="" height=400px width=350px>
-                <p>Clothing</p>
-            </div>
-
-            <div class="card">
-                <img src="{{ asset('assets/img/pexels-Accessories.jpg') }}" alt="" height=400px width=350px>
-                <p>Accesories</p>
-            </div>
-
-            <div class="card">
-                <img src="{{ asset('assets/img/pexels-Art.jpg') }} " alt="" height=400px width=350px>
-                <p>Art & Craft</p>
-            </div>
-
+            @forelse ($categories as $category)
+                <div class="card">
+                    <a href="{{ route('userproduct.index', ['categoryId' => $category->id]) }}">
+                        <img src="{{ asset('uploads/' . $category->image) }}" alt="" height=400px width=350px>
+                        <p>{{$category -> title}}</p>
+                    </a>
+                    
+                </div>
+            @empty
+                <div class="alert alert-primary" role="alert">
+                    No Categories.
+            @endforelse
         </div>
     </div>
 
@@ -82,10 +78,7 @@
     </div>
 
     <div class="row g-4 mb-4">
-        @foreach ($products->filter(function ($product) {
-            $averageRating = number_format($product->reviews->avg('rating'), 1, '.', '');
-            return $averageRating >= 4; // Only show products with a rating of 4 or 5
-        })->take(3) as $product)
+        @foreach ($topProducts as $product)
             <div class="col-md-6 col-lg-4 col-sm-1 g-4 mb-4">
                 <div class="card product-card">
                     <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">

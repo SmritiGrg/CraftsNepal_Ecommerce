@@ -26,8 +26,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('userproduct', customerProductController::class);
+Route::get('/products/{categoryId?}', [CustomerProductController::class, 'index'])->name('userproduct.index');
+Route::get('/products/{category}', [customerProductController::class, 'showByCategory'])->name('products.byCategory');
 
 Route::get('/search', [SearchController::class, 'search'])->name('products.search');
+
+
 
 Route::middleware('auth')->group(function () {
     // Route::get('/', function () {

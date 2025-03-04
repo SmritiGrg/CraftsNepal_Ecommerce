@@ -3,39 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class CustomerProductController extends Controller
 {
+    // public function index(Request $request, $categoryId = null)
+    // {
+    //     // Start with a basic query to fetch all products
+    //     $query = Product::query();
+
+    //     // Filtering by Category
+    //     if ($request->has('category')) {
+    //         // Check if the 'category' parameter exists in the request
+    //         $categoryTitle = $request->query('category'); // Get the category title from the query string
+
+    //         // Filter products based on the related category's title
+    //         $query->whereHas('category', function ($q) use ($categoryTitle) {
+    //             $q->where('title', $categoryTitle); // Match the 'title' column in the ProductCategory table
+    //         });
+    //     }
+
+    //     // Sorting Logic
+    //     if ($request->query('sort') == 'price_asc') {
+    //         $query->orderBy('price', 'asc'); // Sort by price from low to high
+    //     } elseif ($request->query('sort') == 'price_desc') {
+    //         $query->orderBy('price', 'desc'); // Sort by price from high to low
+    //     }
+
+    //     // Get the filtered and sorted products
+    //     $products = $query->get();
+
+    //     // Return the products to the view
+    //     return view('CraftsNepal.ProductList', compact( 'products'));
+    // }
+
     public function index(Request $request)
     {
-        // Start with a basic query to fetch all products
         $query = Product::query();
-        
-        // Filtering by Category
-        if ($request->has('category')) {
-            // Check if the 'category' parameter exists in the request
-            $categoryTitle = $request->query('category'); // Get the category title from the query string
 
-            // Filter products based on the related category's title
+        // Check for category filtering
+        if ($request->route('categoryId')) {
+            $query->where('category_id', $request->route('categoryId'));
+        } elseif ($request->has('category')) {
+            $categoryTitle = $request->query('category');
+
             $query->whereHas('category', function ($q) use ($categoryTitle) {
-                $q->where('title', $categoryTitle); // Match the 'title' column in the ProductCategory table
+                $q->where('title', $categoryTitle);
             });
         }
 
         // Sorting Logic
         if ($request->query('sort') == 'price_asc') {
-            $query->orderBy('price', 'asc'); // Sort by price from low to high
+            $query->orderBy('price', 'asc');
         } elseif ($request->query('sort') == 'price_desc') {
-            $query->orderBy('price', 'desc'); // Sort by price from high to low
+            $query->orderBy('price', 'desc');
         }
 
-        // Get the filtered and sorted products
         $products = $query->get();
-        
-        // Return the products to the view
+
         return view('CraftsNepal.ProductList', compact('products'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -63,6 +93,19 @@ class CustomerProductController extends Controller
         // Return the product details view
         return view('CraftsNepal.product.details', compact('product'));
     }
+
+    public function showByCategory($categoryId)
+    {
+        // Fetch the category
+        $category = ProductCategory::findOrFail($categoryId);
+
+        // Fetch products related to the category
+        $products = Product::where('category_id', $categoryId)->get();
+
+        // Return a view with the products
+        return view('CraftsNepal.ProductList', compact('category', 'products'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

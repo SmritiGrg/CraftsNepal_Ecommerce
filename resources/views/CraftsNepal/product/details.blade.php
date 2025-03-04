@@ -11,6 +11,15 @@
 
         <div class="product_details">
             <h4>{{ $product->name }}</h4>
+            <div class="star">
+                @php
+                    $averageRating = number_format($product->reviews->avg('rating'), 1, '.', '');
+                @endphp
+                @for ($i = 1; $i <= 5; $i++)
+                    <i class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-secondary' }}"></i>
+                @endfor
+                ({{ $averageRating }})
+            </div>  
             <p>{{ $product->description }}</p>
             
             
@@ -34,7 +43,7 @@
             <div class="product_actions">
             <form method="POST" action="{{ route('cart.add') }}">
                 @csrf
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <input type="hidden" name="id" value="{{ $product->id }}">
                 <input type="hidden" name="name" value="{{ $product->name }}">
                 <input type="hidden" name="price" value="{{ $product->price }}">
                 <input type="hidden" name="quantity" value="1">
