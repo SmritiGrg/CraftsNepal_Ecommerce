@@ -38,33 +38,71 @@ class CustomerProductController extends Controller
     //     return view('CraftsNepal.ProductList', compact( 'products'));
     // }
 
+    // public function index(Request $request)
+    // {
+    //     $query = Product::query();
+
+    //     // Check for category filtering
+    //     if ($request->route('categoryId')) {
+    //         $query->where('category_id', $request->route('categoryId'));
+    //     } elseif ($request->has('category')) {
+    //         $categoryTitle = $request->query('category');
+
+    //         $query->whereHas('category', function ($q) use ($categoryTitle) {
+    //             $q->where('title', $categoryTitle);
+    //         });
+    //     }
+
+    //     // Sorting Logic
+    //     if ($request->query('sort') == 'price_asc') {
+    //         $query->orderBy('price', 'asc');
+    //     } elseif ($request->query('sort') == 'price_desc') {
+    //         $query->orderBy('price', 'desc');
+    //     }
+
+    //     $products = $query->get();
+
+    //     return view('CraftsNepal.ProductList', compact('products'));
+    // }
     public function index(Request $request)
     {
         $query = Product::query();
+        $categoryId = $request->route('categoryId');
+        $categoryFilter = $request->query('category');
+        $sortBy = $request->query('sort');
 
-        // Check for category filtering
-        if ($request->route('categoryId')) {
-            $query->where('category_id', $request->route('categoryId'));
-        } elseif ($request->has('category')) {
-            $categoryTitle = $request->query('category');
-
-            $query->whereHas('category', function ($q) use ($categoryTitle) {
-                $q->where('title', $categoryTitle);
+        // Category filtering
+        if ($categoryId) {
+            $query->where('category_id', $categoryId);
+        } elseif ($categoryFilter) {
+            $query->whereHas('category', function ($q) use ($categoryFilter) {
+                $q->where('title', $categoryFilter);
             });
         }
 
         // Sorting Logic
-        if ($request->query('sort') == 'price_asc') {
+        if ($sortBy == 'price_asc') {
             $query->orderBy('price', 'asc');
-        } elseif ($request->query('sort') == 'price_desc') {
+        } elseif ($sortBy == 'price_desc') {
             $query->orderBy('price', 'desc');
         }
 
         $products = $query->get();
+        $categories = ProductCategory::all();
 
-        return view('CraftsNepal.ProductList', compact('products'));
+        // Get current parameters for maintaining state in links
+        $currentCategoryId = $categoryId;
+        $currentCategoryName = $categoryFilter;
+        $currentSort = $sortBy;
+
+        return view('CraftsNepal.ProductList', compact(
+            'products',
+            'categories',
+            'currentCategoryId',
+            'currentCategoryName',
+            'currentSort'
+        ));
     }
-
 
 
     /**

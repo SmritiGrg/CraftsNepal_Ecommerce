@@ -5,16 +5,21 @@
 
             {{-- Filtering --}}
             <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-funnel"></i> Filter
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                    <li><a class="dropdown-item" href="?category=Clothing">Clothing</a></li>
-                    <li><a class="dropdown-item" href="?category=Art and Craft">Art & Craft</a></li>
-                    <li><a class="dropdown-item" href="?category=Accessories">Accessories</a></li>
-                </ul>
-            </div> 
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-funnel"></i> Filter
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                <li><a class="dropdown-item" href="{{ route('userproduct.index', ['sort' => $currentSort]) }}">All Categories</a></li>
+                @foreach($categories as $category)
+                    <li>
+                        <a class="dropdown-item" href="{{ route('userproduct.index', ['category' => $category->title, 'sort' => $currentSort]) }}">
+                            {{ $category->title }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div> 
 
             {{-- <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
@@ -33,15 +38,27 @@
 
             {{-- Sorting --}}
             <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-sort-down"></i> Sort
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                    <li><a class="dropdown-item" href="?sort=price_asc">Price: Low to High</a></li>
-                    <li><a class="dropdown-item" href="?sort=price_desc">Price: High to Low</a></li>
-                </ul>
-            </div>
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-sort-down"></i> Sort
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                <li>
+                    <a class="dropdown-item" href="{{ route('userproduct.index', [
+                        'category' => $currentCategoryName,
+                        'categoryId' => $currentCategoryId,
+                        'sort' => 'price_asc'
+                    ]) }}">Price: Low to High</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('userproduct.index', [
+                        'category' => $currentCategoryName,
+                        'categoryId' => $currentCategoryId,
+                        'sort' => 'price_desc'
+                    ]) }}">Price: High to Low</a>
+                </li>
+            </ul>
+        </div>
 
         </div>
 
