@@ -72,45 +72,45 @@
     </div> --}}
 
     <div class="container py-3">
-    <div class="heading">
-        <span>Products</span>
-        <h1>Our Best Products</h1>
-    </div>
+        <div class="heading">
+            <span>Products</span>
+            <h1>Our Best Products</h1>
+        </div>
 
-    <div class="row g-4 mb-4">
-        @foreach ($topProducts as $product)
-            <div class="col-md-6 col-lg-4 col-sm-1 g-4 mb-4">
-                <div class="card product-card">
-                    <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
-                    <div class="hover-buttons">
-                        <form action="{{ route('cart.add') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="id" value="{{$product->id}}">
-                            <input type="hidden" name="name" value="{{$product->name}}">
-                            <input type="hidden" name="price" value="{{$product->price}}">
-                            <input type="hidden" name="quantity" value="1">
-                            <button type="submit" class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
-                        </form>
-                        <a href="{{ route('userproduct.show',  $product->id) }}" class="btn-outline-custom">Details</a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="card-text text-muted">Rs {{ $product->price }}</p>
-                        <div class="star-rating">
-                            @php
-                                $averageRating = number_format($product->reviews->avg('rating'), 1, '.', '');
-                            @endphp
-                            @for ($i = 1; $i <= 5; $i++)
-                                <i class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-secondary' }}"></i>
-                            @endfor
-                            ({{ $averageRating }})
+        <div class="row g-4 mb-4">
+            @foreach ($topProducts as $product)
+                <div class="col-md-6 col-lg-4 col-sm-1 g-4 mb-4">
+                    <div class="card product-card">
+                        <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                        <div class="hover-buttons">
+                            <form action="{{ route('cart.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$product->id}}">
+                                <input type="hidden" name="name" value="{{$product->name}}">
+                                <input type="hidden" name="price" value="{{$product->price}}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
+                            </form>
+                            <a href="{{ route('userproduct.show',  $product->id) }}" class="btn-outline-custom">Details</a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text text-muted">Rs. {{ $product->price }}</p>
+                            <div class="star-rating">
+                                @php
+                                    $averageRating = number_format($product->reviews->avg('rating'), 1, '.', '');
+                                @endphp
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <i class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-secondary' }}"></i>
+                                @endfor
+                                ({{ $averageRating }})
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
-</div>
 
 
     {{-- ----- START PRODUCT REVIEW SECTION ----- --}}

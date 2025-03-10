@@ -8,62 +8,6 @@ use Illuminate\Http\Request;
 
 class CustomerProductController extends Controller
 {
-    // public function index(Request $request, $categoryId = null)
-    // {
-    //     // Start with a basic query to fetch all products
-    //     $query = Product::query();
-
-    //     // Filtering by Category
-    //     if ($request->has('category')) {
-    //         // Check if the 'category' parameter exists in the request
-    //         $categoryTitle = $request->query('category'); // Get the category title from the query string
-
-    //         // Filter products based on the related category's title
-    //         $query->whereHas('category', function ($q) use ($categoryTitle) {
-    //             $q->where('title', $categoryTitle); // Match the 'title' column in the ProductCategory table
-    //         });
-    //     }
-
-    //     // Sorting Logic
-    //     if ($request->query('sort') == 'price_asc') {
-    //         $query->orderBy('price', 'asc'); // Sort by price from low to high
-    //     } elseif ($request->query('sort') == 'price_desc') {
-    //         $query->orderBy('price', 'desc'); // Sort by price from high to low
-    //     }
-
-    //     // Get the filtered and sorted products
-    //     $products = $query->get();
-
-    //     // Return the products to the view
-    //     return view('CraftsNepal.ProductList', compact( 'products'));
-    // }
-
-    // public function index(Request $request)
-    // {
-    //     $query = Product::query();
-
-    //     // Check for category filtering
-    //     if ($request->route('categoryId')) {
-    //         $query->where('category_id', $request->route('categoryId'));
-    //     } elseif ($request->has('category')) {
-    //         $categoryTitle = $request->query('category');
-
-    //         $query->whereHas('category', function ($q) use ($categoryTitle) {
-    //             $q->where('title', $categoryTitle);
-    //         });
-    //     }
-
-    //     // Sorting Logic
-    //     if ($request->query('sort') == 'price_asc') {
-    //         $query->orderBy('price', 'asc');
-    //     } elseif ($request->query('sort') == 'price_desc') {
-    //         $query->orderBy('price', 'desc');
-    //     }
-
-    //     $products = $query->get();
-
-    //     return view('CraftsNepal.ProductList', compact('products'));
-    // }
     public function index(Request $request)
     {
         $query = Product::query();
@@ -128,8 +72,14 @@ class CustomerProductController extends Controller
     {
         // Fetch a single product by its ID
         $product = Product::findOrFail($id);
+
+        $allProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id) // Excluding the current product
+            ->limit(3)
+            ->get();
+
         // Return the product details view
-        return view('CraftsNepal.product.details', compact('product'));
+        return view('CraftsNepal.product.details', compact('product', 'allProducts'));
     }
 
     public function showByCategory($categoryId)

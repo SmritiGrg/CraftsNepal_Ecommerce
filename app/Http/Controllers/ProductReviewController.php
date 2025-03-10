@@ -39,4 +39,11 @@ class ProductReviewController extends Controller
 
         return redirect()->back()->with('success', 'Review submitted successfully.');
     }
+
+    public function likeReview($id)
+    {
+        $review = ProductReview::findOrFail($id);
+        $review->increment('likes');
+        return redirect()->back()->with('success', 'You liked this review.');
+    }
 }

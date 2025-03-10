@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment-failed', [EsewaPaymentController::class, 'paymentFailed'])->name('payment-failed');
     //revenue
     Route::resource('revenue', RevenueController::class);
+
+    Route::post('/review/{id}/like', [ProductReviewController::class, 'likeReview'])->name('review.like');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

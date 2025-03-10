@@ -6,7 +6,7 @@
     {{-- <div class="heading">
         <h1>Product Details</h1>
     </div> --}}
-    <div class="detail_card">
+    {{-- <div class="detail_card">
         <img src="{{ asset('uploads/' . $product->image)}}" alt="{{ $product->name }}" >
 
         <div class="product_details">
@@ -58,34 +58,103 @@
         </div>
     
         </div>
+    </div> --}}
+
+    <div class="container mt-5">
+        <div class="row pt-2 pb-5 ">
+            <img src="{{ asset('uploads/' . $product->image)}}" alt="{{ $product->name }}" class="img-fluid col-md-6" style="height: 550px;">
+
+            <div class="col-md-6 pt-2">
+                <h3 style="font-weight: bold">{{ $product->name }}</h3>
+                <p class="text-muted">{{ $product->description }}</p>
+                <div class="star">
+                    @php
+                        $averageRating = number_format($product->reviews->avg('rating'), 1, '.', '');
+                    @endphp
+                    @for ($i = 1; $i <= 5; $i++)
+                        <i class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-secondary' }}"></i>
+                    @endfor
+                    <p class="avgRating">{{ $averageRating }} ({{ $product->reviews->count() }} Reviews)</p>
+                </div>
+                <h4>Rs. {{ $product->price }}</h4>
+                <div class="product_stock">
+                    <p class="fs-6">Available:
+                        <span>
+                            @if ($product->stock > 0)
+                            {{ $product->stock }} left
+                            @else
+                                Out of stock
+                            @endif
+                        </span>
+                    </p>
+                </div>
+
+                <div class="d-flex mt-4">
+                    <div class="pe-3">
+                        <form method="POST" action="{{ route('cart.add') }}">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $product->id }}">
+                            <input type="hidden" name="name" value="{{ $product->name }}">
+                            <input type="hidden" name="price" value="{{ $product->price }}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button class="detail-btn-cart" {{ $product->stock > 0 ? '' : 'disabled' }}>Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 
 <!-- Reviews Section -->
-<div class="mt-5">
-    <h2>Customer Reviews ({{ $product->reviews->count() }})</h2>
-    
+<div class="container my-5">
+
+    <h2 class="fw-bold">Customer Reviews</h2>
+    <div class="d-flex align-items-center">
+        <h3 class="me-2">{{ number_format($product->reviews->avg('rating'), 1) }}</h3>
+        <i class="fas fa-star text-warning"></i>
+        <span class="ms-2 text-muted">{{ $product->reviews->count() }} reviews</span>
+        @if (!Auth::user() || !$product->reviews->where('user_id', Auth::id())->count())
+            <button class="btn btn-outline-dark ms-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">WRITE A REVIEW</button>
+        @endif
+    </div>
+    <!-- Success Message -->
+    @if (session('success'))
+        <div id="success-message" class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    <hr>
     @if ($product->reviews->count() > 0)
         @foreach ($product->reviews as $review)
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <img src="{{ asset('uploads/' . $review->user->image) }}" alt="Profile" class="rounded-circle" width="40" height="40">
-                        <strong>{{ $review->user->first_name }}</strong>
-                        <span class="text-muted" style="font-size: 14px;"> - {{ $review->created_at->format('d M Y') }}</span>
-                    </h5>
-                    <p>
-                        @for ($i = 1; $i <= 5; $i++)
-                            <i class="fas fa-star {{ $i <= $review->rating ? 'text-warning' : 'text-secondary' }}"></i>
-                        @endfor
-                    </p>
-                    <p class="card-text">{{ $review->comment }}</p>
+            <div class="review py-3">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="mb-0">{{ $review->user->first_name }}</h5>
+                    </div>
+                    <span class="text-muted">{{ $review->created_at->diffForHumans() }}</span>
                 </div>
+                <div class="mb-2">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <i class="fas fa-star{{ $i <= $review->rating ? ' text-warning' : ' text-muted' }}"></i>
+                    @endfor
+                </div>
+                <p class="text-muted">{{ $review->comment }}</p>
+                <p class="small text-muted">Was this review helpful? 
+                    <form action="{{ route('review.like', $review->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-thumbs-up"></i> {{ $review->likes }}
+                        </button>
+                    </form>
+                </p>
             </div>
+            <hr>
         @endforeach
     @else
-        <p class="text-muted">No reviews yet. Be the first to review this product!</p>
+        <p class="text-muted text-center">No reviews yet. Be the first to write one!</p>
     @endif
 </div>
 
@@ -151,6 +220,44 @@
     </div>
 </div>
 
+<div class="container py-3">
+        <h2 class="fw-bold mb-2">You may also like</h2>
+
+        <div class="row g-4 mb-4">
+            @foreach ($allProducts as $allProduct)
+                <div class="col-md-6 col-lg-4 col-sm-1 g-4 mb-4">
+                    <div class="card product-card">
+                        <img src="{{ asset('uploads/' . $allProduct->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                        <div class="hover-buttons">
+                            <form action="{{ route('cart.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$allProduct->id}}">
+                                <input type="hidden" name="name" value="{{$allProduct->name}}">
+                                <input type="hidden" name="price" value="{{$allProduct->price}}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn-custom"><i class="bi bi-cart fs-3"></i></button>
+                            </form>
+                            <a href="{{ route('userproduct.show',  $allProduct->id) }}" class="btn-outline-custom">Details</a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $allProduct->name }}</h5>
+                            <p class="card-text text-muted">Rs. {{ $allProduct->price }}</p>
+                            <div class="star-rating">
+                                @php
+                                    $averageRating = number_format($allProduct->reviews->avg('rating'), 1, '.', '');
+                                @endphp
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <i class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-secondary' }}"></i>
+                                @endfor
+                                ({{ $averageRating }})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
 <style>
     .rate-container {
         display: flex;
@@ -204,6 +311,10 @@
             $(".rating-text").text(title);
         });
     });
+
+    setTimeout(function() {
+        document.getElementById('success-message').style.display = 'none';
+    }, 5000)
 </script>
 
 
